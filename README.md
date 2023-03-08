@@ -87,7 +87,7 @@
 | 통신 | Axios |
 | 와이어프레임 | Figma |
 | 라이브러리 | React-Chartjs-2 |
-|  |  |
+
 
 
  <br>
@@ -143,7 +143,8 @@
 <img src="https://img.shields.io/badge/.ENV-ECD53F?style=plastic&logo=mongoDB&logoColor=white"/>
 <img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=plastic&logo=mongoDB&logoColor=white"/>
 <img src="https://img.shields.io/badge/Swagger-4479A1?style=plastic&logo=Node.js&logoColor=white"/>
-</div>
+</div> 
+
 
 
 저탄소 녹색성장 기반의 자전거 이용정보 서비스 - 김의명
