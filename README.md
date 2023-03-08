@@ -1,4 +1,3 @@
-
 # ( UDTT )
 - " 저탄소 녹색성장 기반 커뮤니티 서비스 "
 
@@ -99,32 +98,32 @@
 
 ## 🔧 기술 스택 
 <div>
-<img src="https://img.shields.io/badge/GitLab-#FC6D26?style=plastic&logo=Node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/GitHub-#181717?style=plastic&logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/GitBook-#3884FF?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitLab-FC6D26?style=plastic&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=express&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitBook-3884FF?style=plastic&logo=mongoDB&logoColor=white"/>
 </div>
 
 
 ### Data-Analysis 
 
 <div>
-<img src="https://img.shields.io/badge/python-#3776AB?style=plastic&logo=Node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/pandas-#150458?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/GoogleColab-#F9AB00?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/jupyter-#F37626?style=plastic&logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/tableau-#E97627?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/folium-#77B829?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/python-3776AB?style=plastic&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/pandas-150458?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/GoogleColab-F9AB00?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/jupyter-F37626?style=plastic&logo=express&logoColor=white"/>
+<img src="https://img.shields.io/badge/tableau-E97627?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/folium-77B829?style=plastic&logo=mongoDB&logoColor=white"/>
 </div> 
 
 
 ### Front-End
 
 <div>
-<img src="https://img.shields.io/badge/JavaScript-#F7DF1E?style=plastic&logo=JavaScript&logoColor=white"/>
-<img src="https://img.shields.io/badge/React-#61DAFB?style=plastic&logo=React&logoColor=white"/>
-<img src="https://img.shields.io/badge/styled-components-#DB7093?style=plastic&logo=CSS3&logoColor=white"/>
-<img src="https://img.shields.io/badge/Axios-#5A29E4?style=plastic&logo=HTML5&logoColor=white"/>
-<img src="https://img.shields.io/badge/Figma-#F24E1E?style=plastic&logo=BootStrap&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=plastic&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/styled-components-DB7093?style=plastic&logo=CSS3&logoColor=white"/>
+<img src="https://img.shields.io/badge/Axios-5A29E4?style=plastic&logo=HTML5&logoColor=white"/>
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=plastic&logo=BootStrap&logoColor=white"/>
 </div>
 
 
@@ -133,17 +132,17 @@
 ### Back-End
 
 <div>
-<img src="https://img.shields.io/badge/Node.js-#339933?style=plastic&logo=Node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/Express-#000000?style=plastic&logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/MongoDB-#47A248?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/Postman-#FF6C37?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/TypeScript-#3178C6?style=plastic&logo=Node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/MySQL-#4479A1?style=plastic&logo=Node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/VMware-#607078?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/NGINX-#009639?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/.ENV-#ECD53F?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/AmazonEC2-#FF9900?style=plastic&logo=mongoDB&logoColor=white"/>
-<img src="https://img.shields.io/badge/Swagger-#4479A1?style=plastic&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Node.js-339933?style=plastic&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Express-000000?style=plastic&logo=express&logoColor=white"/>
+<img src="https://img.shields.io/badge/MongoDB-47A248?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=plastic&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=plastic&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/VMware-607078?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/NGINX-009639?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/.ENV-ECD53F?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=plastic&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/Swagger-4479A1?style=plastic&logo=Node.js&logoColor=white"/>
 </div>
 
 
