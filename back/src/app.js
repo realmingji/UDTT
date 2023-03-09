@@ -2,8 +2,10 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const morgan = require("morgan");
 
 app.use(cors()); //CORS 방지
+app.use(morgan("dev"));
 
 // Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링
 app.use(express.urlencoded({ extended: false }));
