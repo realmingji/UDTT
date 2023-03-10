@@ -35,7 +35,7 @@ ul{
 }
 
 body{
-      font-family: 'IBM Plex Sans KR', sans-serif;
+  font-family: 'Binggrae';
     }
 
 

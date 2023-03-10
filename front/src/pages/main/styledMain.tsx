@@ -4,7 +4,9 @@ export const MainContainer = styled.div`
   padding: 70px;
 `;
 
-export const NavContainer = styled.div``;
+export const NavContainer = styled.div`
+  display: flex;
+`;
 
 export const MainTitle = styled.div`
   font-family: Yeongdo-Rg;
@@ -13,6 +15,4 @@ export const MainTitle = styled.div`
   color: #1ca82a;
 `;
 
-export const NavBar = styled.div`
-  font-family: Yeongdo-Rg;
-`;
+export const NavBar = styled.div``;
