@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Main from './pages/main/Main';
-// import MyPage from './pages/mypage/MyPage';
-// import Login from './pages/login/Login';
+import Main from './pages/main/main';
+import Mypage from 'pages/mypage/mypage';
+import Login from './pages/login/login';
 import Signup from './pages/signup/Signup';
 import CommunityMain from './pages/community/CommunityMain';
 import CommunityWrite from './pages/community/CommunityWrite';
@@ -28,10 +28,10 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/service" element={<Main />} />
-        <Route path="/login" element={<Login />} /> */}
+        <Route path="/service" element={<Main />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
-        {/* <Route path="/users/:userId" element={<MyPage />} /> */}
+        <Route path="/users/:userId" element={<Mypage />} />
         <Route path="/users/groups" element={<CommunityMain />} />
         <Route path="/users/groups/:groupId" element={<CommunityDetail />} />
         <Route path="/users/groups/new" element={<CommunityWrite />} />
