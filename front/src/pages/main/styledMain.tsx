@@ -13,6 +13,7 @@ export const MainTitle = styled.div`
   font-size: 60px;
   font-weight: 900;
   color: #1ca82a;
+  padding: 10px;
 `;
 
 export const NavBar = styled.div``;
