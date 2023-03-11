@@ -6,7 +6,7 @@
 	`login_date`	datetime	NOT NULL
 );
 
-CREATE TABLE `review` (
+CREATE TABLE `comment` (
 	`review_id`	varchar(255)	NOT NULL,
 	`group_id`	varchar(255)	NOT NULL,
 	`user_id`	varchar(255)	NOT NULL,
