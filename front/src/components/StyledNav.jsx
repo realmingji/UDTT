@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const NavBar = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   margin: auto;
-  justify-content: space-between;
+  justify-content: right;
   float: right;
   padding: 10px;
   height: 50px;
-  background-color: #1ca82a;
-  color: white;
+  color: black;
+
+  span {
+    padding: 20px;
+  }
 `;

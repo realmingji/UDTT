@@ -5,13 +5,17 @@ import Footer from '../../components/Footer';
 
 const Main = () => {
   return (
-    <S.MainContainer>
-      <S.NavContainer>
-        <S.MainTitle>우당 탕탕</S.MainTitle>
+    <>
+      <S.MainContainer>
+        <S.MainTitle>
+          우당
+          <br />
+          탕탕
+        </S.MainTitle>
         <Nav />
-      </S.NavContainer>
+      </S.MainContainer>
       <Footer />
-    </S.MainContainer>
+    </>
   );
 };
 

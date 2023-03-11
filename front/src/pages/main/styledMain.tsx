@@ -2,10 +2,8 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   padding: 70px;
-`;
-
-export const NavContainer = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 export const MainTitle = styled.div`
@@ -14,6 +12,8 @@ export const MainTitle = styled.div`
   font-weight: 900;
   color: #1ca82a;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const NavBar = styled.div``;
