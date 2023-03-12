@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Main from './pages/main/Main';
 // import MyPage from './pages/mypage/MyPage';
 // import Login from './pages/login/Login';
+import Nav from './pages/navbar/navbar';
 import Signup from './pages/signup/Signup';
 import CommunityMain from './pages/community/CommunityMain';
 import CommunityWrite from './pages/community/CommunityWrite';
