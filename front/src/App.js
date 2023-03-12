@@ -1,13 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Main from './pages/main/Main';
-// import MyPage from './pages/mypage/MyPage';
+import Nav from './pages/Layout/navbar/navbar';
+import Footer from 'pages/Layout/footer/footer';
+import Main from './pages/main/main';
+import MyPage from './pages/mypage/mypage';
 // import Login from './pages/login/Login';
-import Nav from './pages/navbar/navbar';
 import Signup from './pages/signup/Signup';
 import CommunityMain from './pages/community/CommunityMain';
 import CommunityWrite from './pages/community/CommunityWrite';
 import CommunityDetail from './pages/community/CommunityDetail';
+
 
 /*
   회원가입 : /register
@@ -28,15 +30,17 @@ import CommunityDetail from './pages/community/CommunityDetail';
 const Router = () => {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
-        {/* <Route path="/service" element={<Main />} />
-        <Route path="/login" element={<Login />} /> */}
+        <Route path="/service" element={<Main />} />
+        {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/register" element={<Signup />} />
-        {/* <Route path="/users/:userId" element={<MyPage />} /> */}
+        <Route path="/users/:userId" element={<MyPage />} />
         <Route path="/users/groups" element={<CommunityMain />} />
         <Route path="/users/groups/:groupId" element={<CommunityDetail />} />
         <Route path="/users/groups/new" element={<CommunityWrite />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

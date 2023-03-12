@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 20vh;
   padding: 70px;
+  margin-bottom: 30px;
 `;
 
 export const NavContainer = styled.div`
@@ -25,9 +26,4 @@ export const NavBar = styled.div`
   span {
     margin-right: 30px;
   }
-`;
-
-export const DataChart = styled.div`
-  font-size: 20px;
-  font-weight: bolder;
 `;
