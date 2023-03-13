@@ -4,12 +4,11 @@ import Nav from './pages/Layout/navbar/navbar';
 import Footer from 'pages/Layout/footer/footer';
 import Main from './pages/main/main';
 import MyPage from './pages/mypage/mypage';
-// import Login from './pages/login/Login';
+import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import CommunityMain from './pages/community/CommunityMain';
 import CommunityWrite from './pages/community/CommunityWrite';
 import CommunityDetail from './pages/community/CommunityDetail';
-
 
 /*
   회원가입 : /register
@@ -32,8 +31,8 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/service" element={<Main />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/users/:userId" element={<MyPage />} />
         <Route path="/users/groups" element={<CommunityMain />} />
