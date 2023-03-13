@@ -1,36 +1,30 @@
 import React, { useState } from 'react';
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import * as S from './StyledLogin';
+import jwtDecode from 'jwt-decode';
 
 const Login = () => {
-  //클라이언트 ID (환경변수)
-  let googleClientId =
-    '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
-  //사용자 정보를 담아둘 userObj
-  const [userObj, setUserObj] = useState({
-    email: '',
-    name: '',
-  });
   //로그인 성공시 res처리
-  const onLoginSuccess = res => {
-    setUserObj({
-      ...userObj,
-      email: res.profileObj.email,
-      name: res.profileObj.name,
-    });
+  const onLoginSuccess = credentialResponse => {
+    if (credentialResponse.credential !== null) {
+      const userCredential = jwtDecode(credentialResponse.credential);
+      console.log(userCredential);
+    }
   };
 
   return (
     <div>
-      <S.LoginContainer>
-        <S.LoginTitle>소셜 로그인</S.LoginTitle>
-        <GoogleLogin
-          clientId={googleClientId}
-          buttonText="구글로 로그인"
-          onSuccess={result => onLoginSuccess(result)}
-          onFailure={result => console.log(result)}
-        />
-      </S.LoginContainer>
+      <GoogleOAuthProvider clientId="271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com">
+        <S.LoginContainer>
+          <S.LoginTitle>소셜 로그인</S.LoginTitle>
+          <GoogleLogin
+            clientId="271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com"
+            buttonText="구글로 로그인"
+            onSuccess={onLoginSuccess}
+            onFailure={res => console.log(res, '실패')}
+          />
+        </S.LoginContainer>
+      </GoogleOAuthProvider>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const Nav = () => {
     <S.MainContainer>
       <S.NavContainer>
         <S.MainTitle>
-          <Link to="/service">우당탕탕</Link>
+          <Link to="/">우당탕탕</Link>
         </S.MainTitle>
         <S.NavBar>
           <span>
