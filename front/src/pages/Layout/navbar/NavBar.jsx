@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as S from './styledNav';
+import * as S from './StyledNav';
 
-const Nav = () => {
+const NavBar = () => {
   const navigate = useNavigate();
   return (
     <S.MainContainer>
       <S.NavContainer>
         <S.MainTitle>
-          <Link to="/service">우당탕탕</Link>
+          <Link to="/">우당탕탕</Link>
         </S.MainTitle>
         <S.NavBar>
           <span>
@@ -30,4 +30,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default NavBar;

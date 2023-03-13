@@ -1,15 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Nav from './pages/Layout/navbar/navbar';
-import Footer from 'pages/Layout/footer/footer';
-import Main from './pages/main/main';
-import MyPage from './pages/mypage/mypage';
-// import Login from './pages/login/Login';
-import Signup from './pages/signup/Signup';
+import Nav from './pages/layout/navbar/Navbar';
+import Footer from './pages/layout/footer/Footer';
+import Main from './pages/main/Main';
+import MyPage from './pages/mypage/MyPage';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/SignUp';
 import CommunityMain from './pages/community/CommunityMain';
 import CommunityWrite from './pages/community/CommunityWrite';
 import CommunityDetail from './pages/community/CommunityDetail';
-
 
 /*
   회원가입 : /register
@@ -17,7 +16,7 @@ import CommunityDetail from './pages/community/CommunityDetail';
   사용자 정보 조회 : /users/:userId
   사용자 정보 수정 : /users/:userId
   사용자 정보 삭제 : /users/:userId
-  메인 페이지 : /service
+  메인 페이지 : /
   모임 메인 : /users/groups
   모임 상세 : /users/groups/:groupId
   모임 등록 : /users/groups/
@@ -32,8 +31,8 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/service" element={<Main />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/users/:userId" element={<MyPage />} />
         <Route path="/users/groups" element={<CommunityMain />} />
