@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GoogleLogin from 'react-google-login';
+import * as S from './StyledLogin';
 
 const Login = () => {
   //클라이언트 ID (환경변수)
@@ -21,12 +22,15 @@ const Login = () => {
 
   return (
     <div>
-      <GoogleLogin
-        clientId={googleClientId}
-        buttonText="Google"
-        onSuccess={result => onLoginSuccess(result)}
-        onFailure={result => console.log(result)}
-      />
+      <S.LoginContainer>
+        <S.LoginTitle>소셜 로그인</S.LoginTitle>
+        <GoogleLogin
+          clientId={googleClientId}
+          buttonText="Google"
+          onSuccess={result => onLoginSuccess(result)}
+          onFailure={result => console.log(result)}
+        />
+      </S.LoginContainer>
     </div>
   );
 };
