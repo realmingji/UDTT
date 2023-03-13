@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import * as S from './styledMypage';
+import * as S from './StyledMypage';
 
 export default function MyPage() {
   const [customerInfo, setCustomerInfo] = useState([]);
