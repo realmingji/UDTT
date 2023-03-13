@@ -36,9 +36,14 @@ ul{
 
 body{
   font-family: 'Binggrae';
+  display: flex;
+  flex-direction: column;
+  margin: 0;
     }
 
-
+#root{
+  flex: 1;
+}
 
 `;
 
