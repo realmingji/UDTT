@@ -14,7 +14,8 @@ export const WelcomeMsg = styled.div`
   height: 70px;
   > p {
     font-weight: 500;
-    color: #b1b1b1;
+    padding-bottom: 8px;
+    color: #666464;
   }
   > .mat-icon {
     font-size: 45px;
@@ -27,7 +28,7 @@ export const Line = styled.hr`
   background: #1ca82a;
   border-radius: 15px;
   border: 0;
-  height: 10px;
+  height: 7px;
 `;
 
 export const AccountIcon = styled(AccountCircleIcon)`
@@ -36,7 +37,7 @@ export const AccountIcon = styled(AccountCircleIcon)`
 
 export const MenuTab = styled.div`
   width: 55%;
-  margin: 70px auto;
+  margin: 50px auto;
   font-size: 20px;
   text-align: center;
   font-weight: 600;
@@ -51,7 +52,7 @@ export const MenuTab = styled.div`
       color: #b1b1b1;
 
       &:hover {
-        font-wight: 900;
+        font-weight: 900;
         border-bottom: none;
         color: black;
       }
@@ -75,11 +76,23 @@ export const Subtitle = styled.div`
     justify-content: space-between;
     > p {
       font-size: 18px;
+      cursor: pointer;
+      &:hover {
+        font-weight: 900;
+        font-size: 18px;
+        color: #1ca82a;
+      }
     }
   }
 `;
 
 export const ShowList = styled.div`
   padding: 30px;
+  width: 40%;
+  height: 200px;
+  margin: 50px auto;
   text-align: center;
+  color: #666464;
+  border-radius: 20px;
+  background-color: #e7ffd6;
 `;
