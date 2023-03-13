@@ -26,7 +26,7 @@ const Login = () => {
         <S.LoginTitle>소셜 로그인</S.LoginTitle>
         <GoogleLogin
           clientId={googleClientId}
-          buttonText="Google"
+          buttonText="구글로 로그인"
           onSuccess={result => onLoginSuccess(result)}
           onFailure={result => console.log(result)}
         />
