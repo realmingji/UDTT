@@ -13,8 +13,8 @@ app.use(express.urlencoded({extended: false}));
 // 클라이언트 ID, 클라이언트 암호 및 리디렉션 URI로 oauth2Client 설정
 // redirectUri는 Google 개발자 콘솔의 리디렉션 URI 승인에서 설정한 것과 동일 해야함
 const oauth2Client = new google.auth.OAuth2(
-    'Client Id',
-    'Client Secret',
+    'Client id : 271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com',
+    'Client Secret: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',
     'http://localhost:8080/auth/google/callback'
 );
 // redirectUrl을 생성, redirectUrl은 앱을 Gmail 계정으로 리디렉션
@@ -22,7 +22,7 @@ const oauth2Client = new google.auth.OAuth2(
 const redirectUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
     prompt: 'consent',
-    scope: ['email', 'profile']
+    scope: ['email']
 });
 
 // 로그인 페이지로 이동
