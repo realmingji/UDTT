@@ -16,7 +16,7 @@ import CommunityDetail from './pages/community/CommunityDetail';
   사용자 정보 조회 : /users/:userId
   사용자 정보 수정 : /users/:userId
   사용자 정보 삭제 : /users/:userId
-  메인 페이지 : /service
+  메인 페이지 : /
   모임 메인 : /users/groups
   모임 상세 : /users/groups/:groupId
   모임 등록 : /users/groups/
