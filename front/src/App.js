@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Nav from './pages/layout/navbar/NavBar';
-import Footer from './pages/layout/footer/Footer';
-import Main from './pages/main/Main';
-import MyPage from './pages/mypage/Mypage';
+import Nav from './pages/Layout/navbar/navbar';
+import Footer from './pages/Layout/footer/footer';
+import Main from './pages/main/main';
+import MyPage from './pages/mypage/mypage';
 import Login from './pages/login/Login';
-import Signup from './pages/signup/SignUp';
+import Signup from './pages/signup/Signup';
 import CommunityMain from './pages/community/CommunityMain';
 import CommunityWrite from './pages/community/CommunityWrite';
 import CommunityDetail from './pages/community/CommunityDetail';
