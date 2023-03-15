@@ -89,10 +89,64 @@ export const Subtitle = styled.div`
 export const ShowList = styled.div`
   padding: 30px;
   width: 40%;
-  height: 200px;
   margin: 50px auto;
   text-align: center;
   color: #666464;
   border-radius: 20px;
   background-color: #e7ffd6;
+`;
+
+export const FormContainer = styled.form`
+  padding: 40px;
+  width: 40%;
+  margin: 50px auto 15px auto;
+  text-align: center;
+  color: #666464;
+  border-radius: 20px;
+  background-color: #e7ffd6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > .form-field {
+    width: 70%;
+    > input {
+      border: hidden;
+      width: 60%;
+      margin-left: 15px;
+      border-bottom-style: groove;
+      background-color: inherit;
+    }
+  }
+`;
+
+export const StyledButton = styled.button`
+  background-color: rgba(153, 164, 151, 1);
+  color: rgb(59, 59, 59);
+  font-size: 13px;
+  font-weight: 600;
+  width: 70px;
+  border: none;
+  border-radius: 10px;
+  padding-block: 5px;
+  text-align: center;
+  transition: 0.25s;
+  &:hover {
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+  }
+`;
+
+export const SignoutDiv = styled.div`
+  text-align: center;
+  > p {
+    font-size: 13px;
+    padding-left: 400px;
+    color: rgb(140, 147, 142);
+    &:hover {
+      cursor: pointer;
+      font-weight: 900;
+      color: #1ca82a;
+    }
+  }
 `;
