@@ -113,3 +113,75 @@ export const BtnContainer = styled.div`
     cursor: pointer;
   }
 `;
+
+export const DetailBoard = styled.div`
+  width: 70%;
+  margin: auto;
+
+  h1 {
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  h2 {
+    margin-top: 3px;
+  }
+  span {
+    color: #1ca82a;
+  }
+`;
+
+export const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: lightgray;
+  margin: 15px 0 15px 0;
+`;
+
+export const Profile = styled.div`
+  display: flex;
+  margin-top: 20px;
+
+  h3 {
+    font-weight: bold;
+    margin-left: 15px;
+  }
+`;
+
+export const ProfilePicture = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: lightgray;
+`;
+
+export const CommentInput = styled.input`
+  font-size: 15px;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 1px;
+  outline: none;
+  text-decoration: underline;
+  text-underline-position: under;
+
+  ::placeholder {
+    color: #929292;
+  }
+`;
+
+export const ParticipationBtn = styled.div`
+  width: 70%;
+  height: 45px;
+  font-size: 20px;
+  background-color: #1ca82a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 150px;
+`;
