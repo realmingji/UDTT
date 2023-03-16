@@ -5,7 +5,7 @@ import Footer from './pages/Layout/footer/footer';
 import Main from './pages/main/main';
 import MyPage from './pages/mypage/mypage';
 import Login from './pages/login/Login';
-import Signup from './pages/signup/Signup';
+import SignUp from './pages/signup/SignUp';
 import CommunityMain from './pages/community/CommunityMain';
 import CommunityWrite from './pages/community/CommunityWrite';
 import CommunityDetail from './pages/community/CommunityDetail';
@@ -33,7 +33,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Signup />} />
+        <Route path="/register" element={<SignUp />} />
         <Route path="/users/:userId" element={<MyPage />} />
         <Route path="/users/groups" element={<CommunityMain />} />
         <Route path="/users/groups/:groupId" element={<CommunityDetail />} />
