@@ -10,15 +10,13 @@ const serverURL = 'http://localhost:8080/api/login';
 const Login = () => {
   const navigate = useNavigate();
   //로그인 성공시 res처리
-  const [info, setInfo] = useState(null);
   const onLoginSuccess = async credentialResponse => {
     if (credentialResponse.credential !== null) {
       const userCredential = jwtDecode(credentialResponse.credential);
       console.log(userCredential);
       try {
         const res = await axios.post(serverURL, { userCredential });
-        setInfo(res.data);
-        console.log(res.data, info, '성공');
+        console.log(res.data, '성공');
         navigate('/');
       } catch (err) {
         console.log(err, '실패');
