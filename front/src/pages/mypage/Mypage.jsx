@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import Clublist from './clublist/Clublist';
-import * as S from './StyledMypage';
+import Clublist from './clublist/clublist';
+import * as S from './styledMypage';
 
 export default function MyPage() {
   const navigate = useNavigate();
