@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './StyledFooter';
+import * as S from './styledFooter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';

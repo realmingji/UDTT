@@ -4,7 +4,6 @@ export const MainContainer = styled.div`
   width: 100vw;
   height: 20vh;
   padding: 70px;
-  margin-bottom: 30px;
 `;
 
 export const NavContainer = styled.div`
