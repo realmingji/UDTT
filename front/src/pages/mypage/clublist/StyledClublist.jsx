@@ -1,21 +1,43 @@
 import styled from 'styled-components';
 
-export const LoginContainer = styled.div`
-  padding: 70px;
-  border: 1px solid #1ca82a;
-  display: flex;
-  width: 40%;
-  flex-direction: column;
-  position: absolute;
-  margin: auto;
-  height: 50vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+export const MainContainer = styled.div`
+  width: 100%;
 `;
-export const LoginTitle = styled.div`
+export const ListContainer = styled.div`
   font-size: 20px;
-  text-align: center;
-  color: #1ca82a;
-  padding: 50px;
+  background-color: white;
+  border: 1px solid #4bc857;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+export const MainInfo = styled.div`
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    > .status {
+      font-weight: 900;
+      font-size: 18px;
+      color: green;
+      margin-right: 5px;
+    }
+    > .title {
+      font-weight: 900;
+      font-size: 18px;
+      color: black;
+    }
+  }
+  > .placename {
+    font-size: 16px;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const DateInfo = styled.div`
+  font-size: 16px;
 `;

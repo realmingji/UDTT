@@ -12,7 +12,7 @@ const Main = () => {
       </div>
 
       <iframe
-        src="https://public.tableau.com/views/_16788805731950/1_1?:language=ko-KR&publish=yes&:display_count=n&:origin=viz_share_link?:showVizHome=no&:embed=true"
+        src="https://public.tableau.com/views/UDTT-DataAnalysis/1_1?:language=ko-KR&publish=yes&:display_count=n&:origin=viz_share_link?:showVizHome=no&:embed=true"
         width="1000"
         height="80%"
         title="구역별 자전거이용률"
