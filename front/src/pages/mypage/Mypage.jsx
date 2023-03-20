@@ -28,6 +28,12 @@ export default function MyPage() {
   }, []);
   ///////////// test용_사용자정보가져오기  //////////////
 
+  ///////////// test용_모임리스트정보가져오기  //////////////
+  const getJoinListData = () => {
+    axios.get('/data/joinList.json').then(res => setJoinList(res.data));
+  };
+  ///////////// test용_모임리스트정보가져오기  //////////////
+
   const submitChangedNickname = event => {
     event.preventDefault();
     let userNickname = { user_name: nickname };
@@ -77,9 +83,30 @@ export default function MyPage() {
       {currentTab === CURRENT_TAB.CLUB_LIST && (
         <S.Subtitle>
           <div>
-            <p onClick={() => setCurrentSubTab(CURRENT_SUBTAB.JOIN)}>참여</p>
-            <p onClick={() => setCurrentSubTab(CURRENT_SUBTAB.MY_CLUB)}>진행</p>
-            <p onClick={() => setCurrentSubTab(CURRENT_SUBTAB.MY_COMMENT)}>
+            <p
+              onClick={() => {
+                setCurrentSubTab(CURRENT_SUBTAB.JOIN);
+                //함수명 수정예정
+                getJoinListData();
+              }}
+            >
+              참여
+            </p>
+            <p
+              onClick={() => {
+                setCurrentSubTab(CURRENT_SUBTAB.MY_CLUB);
+                //함수명 수정예정
+                getJoinListData();
+              }}
+            >
+              진행
+            </p>
+            <p
+              onClick={() => {
+                setCurrentSubTab(CURRENT_SUBTAB.MY_COMMENT);
+                getJoinListData();
+              }}
+            >
               코멘트
             </p>
           </div>
@@ -115,17 +142,25 @@ export default function MyPage() {
       )}
       {currentSubTab === CURRENT_SUBTAB.JOIN && (
         <S.ShowList>
-          {joinList.length === 0 ? '참여한 모임이 없습니다.' : <Clublist />}
+          {joinList.length === 0 ? (
+            '참여한 모임이 없습니다.'
+          ) : (
+            <Clublist data={joinList} />
+          )}
         </S.ShowList>
       )}
       {currentSubTab === CURRENT_SUBTAB.MY_CLUB && (
         <S.ShowList>
-          {joinList.length === 0 ? '주최한 모임이 없습니다.' : <Clublist />}
+          {myClubList.length === 0 ? '주최한 모임이 없습니다.' : <Clublist />}
         </S.ShowList>
       )}
       {currentSubTab === CURRENT_SUBTAB.MY_COMMENT && (
         <S.ShowList>
-          {joinList.length === 0 ? '등록한 댓글이 없습니다.' : <Clublist />}
+          {myCommentList.length === 0 ? (
+            '등록한 댓글이 없습니다.'
+          ) : (
+            <Clublist />
+          )}
         </S.ShowList>
       )}
     </S.Container>
