@@ -16,6 +16,11 @@ export const WelcomeMsg = styled.div`
     font-weight: 500;
     padding-bottom: 8px;
     color: #666464;
+    .nickname {
+      color: black;
+      font-weight: 900;
+      font-size: 18px;
+    }
   }
   > .mat-icon {
     font-size: 45px;
