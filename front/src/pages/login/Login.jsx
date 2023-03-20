@@ -9,7 +9,9 @@ const serverURL = 'http://localhost:8080/api/login';
 
 const Login = () => {
   const navigate = useNavigate();
-  const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+  //.env에 놔두면 왜 안 될까,,,,
+  const googleClientId =
+    '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
   //로그인 성공시 res처리
   const onLoginSuccess = async credentialResponse => {
     if (credentialResponse.credential !== null) {
