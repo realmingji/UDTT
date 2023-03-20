@@ -3,15 +3,6 @@ import { ROUTE_ARR } from './routes';
 import { Routes, Route } from 'react-router-dom';
 import Nav from './components/navbar/NavBar';
 import Footer from './components/footer/Footer';
-// import Nav from './pages/Layout/navbar/NavBar';
-// import Footer from './pages/Layout/footer/Footer';
-// import Main from './pages/main/Main';
-// import MyPage from './pages/mypage/Mypage';
-// import Login from './pages/login/Login';
-// import SignUp from './pages/signup/SignUp';
-// import CommunityMain from './pages/community/CommunityMain';
-// import CommunityWrite from './pages/community/CommunityWrite';
-// import CommunityDetail from './pages/community/CommunityDetail';
 
 /*
   회원가입 : /register
@@ -29,27 +20,6 @@ import Footer from './components/footer/Footer';
   댓글 수정 : /user/comments/:commentsId
   댓글 삭제 : /user/comments/:commentsId
 */
-// const Router = () => {
-//   return (
-//     <BrowserRouter>
-//       <Nav />
-//       <Routes>
-//         <Route path="/" element={<Main />} />
-//         <Route path="/login" element={<Login />} />
-//         <Route path="/register" element={<SignUp />} />
-//         <Route path="/users/:userId" element={<MyPage />} />
-//         <Route path="/users/groups" element={<CommunityMain />} />
-//         <Route path="/users/groups/:groupId" element={<CommunityDetail />} />
-//         <Route path="/users/groups/new" element={<CommunityWrite />} />
-//       </Routes>
-//       <Footer />
-//     </BrowserRouter>
-//   );
-// };
-
-// export default Router;
-
-/// 코드리뷰반영 ///
 
 const Router = () => {
   return (

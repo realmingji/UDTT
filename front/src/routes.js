@@ -1,14 +1,9 @@
-import React from 'react';
-
 import Main from './pages/main/Main';
 import MyPage from './pages/mypage/Mypage';
 import Login from './pages/login/Login';
-// import SignUp from './pages/signup/SignUp';
 import CommunityMain from './pages/community/CommunityMain';
 import CommunityWrite from './pages/community/CommunityWrite';
 import CommunityDetail from './pages/community/CommunityDetail';
-
-/// 코드리뷰 반영 ///
 
 export const ROUTE = {
   MAIN: {
