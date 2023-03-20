@@ -15,12 +15,16 @@ export default function MyPage() {
   const [myClubList, setMyClubList] = useState([]);
   const [myCommentList, setMyCommentList] = useState([]);
 
+  // 사용자정보가져오기
   // useEffect(() => {
-  //   // 사용자정보가져오기
   //   axios
   //     .get(`http://localhost:5001/users/${userId}`)
   //     .then(res => setCustomerInfo(res.data));
   // }, []);
+
+  // 모임리스트 가져오기
+  // const getJoinListData = () => {
+  //   axios.get(`http://localhost:5001/users/groups`).then(res => setJoinList(res.data));
 
   ///////////// test용_사용자정보가져오기  //////////////
   useEffect(() => {
