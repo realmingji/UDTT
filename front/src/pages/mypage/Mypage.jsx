@@ -7,8 +7,7 @@ import * as S from './StyledMypage';
 
 export default function MyPage() {
   const navigate = useNavigate();
-
-  const [customerInfo, setCustomerInfo] = useState([]);
+  const [customerInfo, setCustomerInfo] = useState({});
   const [currentTab, setCurrentTab] = useState('clubList');
   const [currentSubTab, setCurrentSubTab] = useState('join');
   const [nickname, setNickname] = useState('join');
@@ -49,30 +48,36 @@ export default function MyPage() {
       <S.MenuTab>
         <ul className="tabs">
           <li
-            onMouseDown={() => setCurrentTab('clubList')}
-            onClick={() => setCurrentSubTab('join')}
+            onClick={() => {
+              setCurrentTab(CURRENT_TAB.CLUB_LIST);
+              setCurrentSubTab(CURRENT_SUBTAB.JOIN);
+            }}
           >
             내 모임
           </li>
           <li
-            onMouseDown={() => setCurrentTab('myinfo')}
-            onClick={() => setCurrentSubTab('')}
+            onClick={() => {
+              setCurrentTab(CURRENT_TAB.MY_INFO);
+              setCurrentSubTab('');
+            }}
           >
             내 정보 관리
           </li>
         </ul>
       </S.MenuTab>
-      {currentTab === 'clubList' && (
+      {currentTab === CURRENT_TAB.CLUB_LIST && (
         <S.Subtitle>
           <div>
-            <p onMouseDown={() => setCurrentSubTab('join')}>참여</p>
-            <p onMouseDown={() => setCurrentSubTab('myclub')}>진행</p>
-            <p onMouseDown={() => setCurrentSubTab('comment')}>코멘트</p>
+            <p onClick={() => setCurrentSubTab(CURRENT_SUBTAB.JOIN)}>참여</p>
+            <p onClick={() => setCurrentSubTab(CURRENT_SUBTAB.MY_CLUB)}>진행</p>
+            <p onClick={() => setCurrentSubTab(CURRENT_SUBTAB.MY_COMMENT)}>
+              코멘트
+            </p>
           </div>
           <S.Line widthLength="50%" />
         </S.Subtitle>
       )}
-      {currentTab === 'myinfo' && (
+      {currentTab === CURRENT_TAB.MY_INFO && (
         <>
           <S.Subtitle>
             <p>나의 정보 관리</p>
@@ -99,17 +104,17 @@ export default function MyPage() {
           </S.SignoutDiv>
         </>
       )}
-      {currentSubTab === 'join' && (
+      {currentSubTab === CURRENT_SUBTAB.JOIN && (
         <S.ShowList>
           {joinList.length === 0 ? '참여한 모임이 없습니다.' : <Clublist />}
         </S.ShowList>
       )}
-      {currentSubTab === 'myclub' && (
+      {currentSubTab === CURRENT_SUBTAB.MY_CLUB && (
         <S.ShowList>
           {joinList.length === 0 ? '주최한 모임이 없습니다.' : <Clublist />}
         </S.ShowList>
       )}
-      {currentSubTab === 'comment' && (
+      {currentSubTab === CURRENT_SUBTAB.MY_COMMENT && (
         <S.ShowList>
           {joinList.length === 0 ? '등록한 댓글이 없습니다.' : <Clublist />}
         </S.ShowList>
@@ -117,3 +122,14 @@ export default function MyPage() {
     </S.Container>
   );
 }
+
+const CURRENT_TAB = {
+  CLUB_LIST: 'clubList',
+  MY_INFO: 'myinfo',
+};
+
+const CURRENT_SUBTAB = {
+  JOIN: 'clubList',
+  MY_CLUB: 'myinfo',
+  MY_COMMENT: 'comment',
+};
