@@ -7,7 +7,7 @@ import * as S from './StyledMypage';
 
 export default function MyPage() {
   const navigate = useNavigate();
-  const [customerInfo, setCustomerInfo] = useState({});
+  const [customerInfo, setCustomerInfo] = useState('');
   const [currentTab, setCurrentTab] = useState('clubList');
   const [currentSubTab, setCurrentSubTab] = useState('join');
   const [nickname, setNickname] = useState('join');
@@ -21,6 +21,12 @@ export default function MyPage() {
   //     .get(`http://localhost:5001/users/${userId}`)
   //     .then(res => setCustomerInfo(res.data));
   // }, []);
+
+  ///////////// test용_사용자정보가져오기  //////////////
+  useEffect(() => {
+    axios.get('/data/customerInfo.json').then(res => setCustomerInfo(res.data));
+  }, []);
+  ///////////// test용_사용자정보가져오기  //////////////
 
   const submitChangedNickname = event => {
     event.preventDefault();
@@ -42,7 +48,10 @@ export default function MyPage() {
       <S.WelcomeMsg>
         <S.AccountIcon className="mat-icon" />
         {/* 닉네임부분 변경예정 */}
-        <p>안녕하세요 {customerInfo.name} 고객님 </p>
+        <p>
+          안녕하세요 '
+          <span className="nickname"> {customerInfo.user_name}</span> ' 님
+        </p>
         <p>오늘도 환영합니다!</p>
       </S.WelcomeMsg>
       <S.MenuTab>
