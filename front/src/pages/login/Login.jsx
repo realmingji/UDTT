@@ -9,6 +9,7 @@ const serverURL = 'http://localhost:8080/api/login';
 
 const Login = () => {
   const navigate = useNavigate();
+  const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   //로그인 성공시 res처리
   const onLoginSuccess = async credentialResponse => {
     if (credentialResponse.credential !== null) {
@@ -27,7 +28,7 @@ const Login = () => {
 
   return (
     <div>
-      <GoogleOAuthProvider clientId="271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={googleClientId}>
         <S.LoginContainer>
           <S.LoginTitle>소셜 로그인</S.LoginTitle>
           <GoogleLogin
