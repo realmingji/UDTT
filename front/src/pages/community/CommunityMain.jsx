@@ -1,10 +1,12 @@
 import React from 'react';
 import * as S from './StyledCommunity';
 import { Link } from 'react-router-dom';
+import Map from './Map';
 
 const CommunityMain = () => {
   return (
     <div>
+      <Map />
       <Link to={'/users/groups/:groupId'}>
         <S.BoardBox>
           <h1>
