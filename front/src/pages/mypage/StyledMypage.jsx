@@ -3,7 +3,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const Container = styled.div`
   width: 100vw;
-  padding: 40px;
+  padding: 70px 40px;
 `;
 
 export const WelcomeMsg = styled.div`
@@ -35,7 +35,31 @@ export const Line = styled.hr`
   border: 0;
   height: 7px;
 `;
-
+export const Subtitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > p {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  > div {
+    width: 25%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > p {
+      font-size: 18px;
+      cursor: pointer;
+      &:hover {
+        font-weight: 900;
+        font-size: 18px;
+        color: #1ca82a;
+      }
+    }
+  }
+`;
 export const AccountIcon = styled(AccountCircleIcon)`
   color: #1ca82a;
 `;
@@ -65,32 +89,6 @@ export const MenuTab = styled.div`
   }
 `;
 
-export const Subtitle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  > p {
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-  > div {
-    width: 25%;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    > p {
-      font-size: 18px;
-      cursor: pointer;
-      &:hover {
-        font-weight: 900;
-        font-size: 18px;
-        color: #1ca82a;
-      }
-    }
-  }
-`;
-
 export const ShowList = styled.div`
   padding: 30px;
   width: 40%;
@@ -99,59 +97,4 @@ export const ShowList = styled.div`
   color: #666464;
   border-radius: 20px;
   background-color: #e7ffd6;
-`;
-
-export const FormContainer = styled.form`
-  padding: 40px;
-  width: 40%;
-  margin: 50px auto 15px auto;
-  text-align: center;
-  color: #666464;
-  border-radius: 20px;
-  background-color: #e7ffd6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  > .form-field {
-    width: 70%;
-    > input {
-      border: hidden;
-      width: 60%;
-      margin-left: 15px;
-      border-bottom-style: groove;
-      background-color: inherit;
-    }
-  }
-`;
-
-export const StyledButton = styled.button`
-  background-color: rgba(153, 164, 151, 1);
-  color: rgb(59, 59, 59);
-  font-size: 13px;
-  font-weight: 600;
-  width: 70px;
-  border: none;
-  border-radius: 10px;
-  padding-block: 5px;
-  text-align: center;
-  transition: 0.25s;
-  &:hover {
-    cursor: pointer;
-    background-color: gray;
-    color: white;
-  }
-`;
-
-export const SignoutDiv = styled.div`
-  text-align: center;
-  > p {
-    font-size: 13px;
-    padding-left: 400px;
-    color: rgb(140, 147, 142);
-    &:hover {
-      cursor: pointer;
-      font-weight: 900;
-      color: #1ca82a;
-    }
-  }
 `;

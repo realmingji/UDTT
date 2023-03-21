@@ -5,7 +5,7 @@ const Comment = function(comment){
     this.content = comment.content;
 };
 
-// comment 튜플 추가 
+// comment 등록, 튜플 추가 
 Comment.create = (newComment, result)=>{
     sql.query("INSERT INTO comments SET ?", newComment, (err, res)=>{
         if(err){
@@ -19,7 +19,7 @@ Comment.create = (newComment, result)=>{
     });
 };
 
-// comment id로 조회
+// comment조회 commentId로 조회
 Comment.findByID = (commentID, result)=>{
     sql.query('SELECT * FROM comments WHERE id = ?',commentID, (err, res)=>{
         if(err){
@@ -74,7 +74,7 @@ Comment.updateByID = (id, comment, result)=>{
     });
 };
 
-// customer id로 삭제
+// comment id로 삭제
 Comment.remove = (id, result)=>{
     sql.query('DELETE FROM comments WHERE id = ?',id, (err, res)=>{
         if(err){

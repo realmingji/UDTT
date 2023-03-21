@@ -1,29 +1,27 @@
 const sql = require("./db.js");
 
 // 생성자 
-const Group = function(group){
-    this.title = group.title;
-    this.info = group.info;
-    this.status = group.status;
+const Spot = function(spot){
+    this.place = spot.place;
 };
 
-// group 튜플 추가 
-Group.create = (newGroup, result)=>{
-    sql.query("INSERT INTO groups SET ?", newGroup, (err, res)=>{
+// spot 튜플 추가 // DB에서 관리, 삭제 예정
+Spot.create = (newSpot, result)=>{
+    sql.query("INSERT INTO spots SET ?", newSpot, (err, res)=>{
         if(err){
             console.log("error: ", err);
             result(err, null);
             return;
         }
 
-        console.log("Created group: ",{id:res.inseertId, ...newGroup });
-        result(null, {id: res.inseertId, ...newGroup});
+        console.log("Created spot: ",{id:res.inseertId, ...newSpot});
+        result(null, {id: res.inseertId, ...newSpot});
     });
 };
 
-// group id로 조회
-Group.findByID = (groupID, result)=>{
-    sql.query('SELECT * FROM groups WHERE id = ?',groupID, (err, res)=>{
+// spot별 소모임 조회, spotId로 조회
+Spot.findByID = (spotID, result)=>{
+    sql.query('SELECT * FROM spots WHERE id = ?',spotID, (err, res)=>{
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -31,7 +29,7 @@ Group.findByID = (groupID, result)=>{
         }
 
         if(res.length){
-            console.log("found group: ", res[0]);
+            console.log("found spot: ", res[0]);
             result(null, res[0]);
             return;
         }
@@ -41,24 +39,25 @@ Group.findByID = (groupID, result)=>{
     });
 };
 
-// group 전체 조회
-Group.getAll = result =>{
-    sql.query('SELECT * FROM groups', (err, res)=>{
+// 소모임 메인페이지, spot 전체 조회
+Spot.getAll = result =>{
+    sql.query('SELECT * FROM spots', (err, res)=>{
         if(err){
             console.log("error: ", err);
             result(err, null);
             return;
         }
 
-        console.log("group: ", res);
+        console.log("spot: ", res);
         result(null, res);
     });
 };
 
-// group id로 수정
-Group.updateByID = (id, group, result)=>{
-    sql.query('UPDATE groups SET title = ?, info = ?, status = ? WHERE id = ?', 
-    [group.title, group.info, group.status, id], (err, res)=>{
+// -----------------------------------DB에서 관리
+// spotId로 수정
+Spot.updateByID = (id, spot, result)=>{
+    sql.query('UPDATE spots SET place = ?, WHERE id = ?', 
+    [spot.place, id], (err, res)=>{
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -71,14 +70,14 @@ Group.updateByID = (id, group, result)=>{
             return;
         }
 
-        console.log("update group: ", {id:id, ... group});
-        result(null, {id:id, ...group});
+        console.log("update spot: ", {id:id, ... spot});
+        result(null, {id:id, ...spot});
     });
 };
 
-// group id로 삭제
-Group.remove = (id, result)=>{
-    sql.query('DELETE FROM groups WHERE id = ?',id, (err, res)=>{
+// spotId로 삭제
+Spot.remove = (id, result)=>{
+    sql.query('DELETE FROM spots WHERE id = ?',id, (err, res)=>{
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -91,14 +90,14 @@ Group.remove = (id, result)=>{
             return;
         }
 
-        console.log("deleted group with id: ", id);
+        console.log("deleted spot with id: ", id);
         result(null, res);
     });
 };
 
-// group 전체 삭제
-Group.removeAll = result =>{
-    sql.query('DELETE FROM groups',(err, res)=>{
+// spot 전체 삭제
+Spot.removeAll = result =>{
+    sql.query('DELETE FROM spots',(err, res)=>{
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -111,11 +110,11 @@ Group.removeAll = result =>{
             return;
         }
 
-        console.log('deleted ${res.affectedRows} groups');
+        console.log('deleted ${res.affectedRows} spots');
         result(null, res);
     });
 };
 
-module.exports = Group;
+module.exports = Spot;
 
 
