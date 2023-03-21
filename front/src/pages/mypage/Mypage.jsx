@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { ROUTE } from '../../routes';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Myinfo from './myinfo/myinfo';
 import Clublist from './clublist/Clublist';
@@ -16,24 +15,6 @@ export default function MyPage() {
   const [myClubList, setMyClubList] = useState([]);
   const [myCommentList, setMyCommentList] = useState([]);
 
-<<<<<<< HEAD
-  // 사용자정보가져오기
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5001/users/${userId}`)
-  //     .then(res => setCustomerInfo(res.data));
-  // }, []);
-
-  // 모임리스트 가져오기
-  // const getJoinListData = () => {
-  //   axios.get(`http://localhost:5001/users/groups`).then(res => setJoinList(res.data));
-
-  ///////////// test용_사용자정보가져오기  //////////////
-  useEffect(() => {
-    axios.get('/data/customerInfo.json').then(res => setCustomerInfo(res.data));
-  }, []);
-  ///////////// test용_사용자정보가져오기  //////////////
-=======
   // [ 사용자정보가져오기 ]
   // useEffect(() => {
   //   axios.get(`http://localhost:5001/users/${userId}`).then(res => {
@@ -53,7 +34,6 @@ export default function MyPage() {
   //       setNickname('');
   //     });
   // };
->>>>>>> feature/mypage
 
   // [ 회원탈퇴 ]
   // const signout = () => {
