@@ -55,8 +55,8 @@ export default function MyPage() {
         <S.AccountIcon className="mat-icon" />
         {/* 닉네임부분 변경예정 */}
         <p>
-          안녕하세요 '
-          <span className="nickname"> {customerInfo.user_name}</span> ' 님
+          안녕하세요 '<span className="nickname"> {customerInfo.nickname}</span>{' '}
+          ' 님
         </p>
         <p>오늘도 환영합니다!</p>
       </S.WelcomeMsg>
