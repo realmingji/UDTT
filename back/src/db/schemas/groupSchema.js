@@ -27,7 +27,7 @@ const GroupSchema = new mongoose.Schema(
       enum: ['Open', 'Close'],
     },
     leaderID: {
-      type: Schema.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
   },
