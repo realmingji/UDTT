@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "참가모임1",
+    "status": "진행중",
+    "start_time": "2023/03/23",
+    "location": "여의도 한강공원"
+  },
+  {
+    "id": 2,
+    "title": "참가모임2",
+    "status": "모집완료",
+    "start_time": "2023/02/23",
+    "location": "반포 한강공원"
+  },
+  {
+    "id": 3,
+    "title": "참가모임3",
+    "status": "모집완료",
+    "start_time": "2023/1/23",
+    "location": "잠실 한강공원"
+  }
+]
