@@ -51,8 +51,22 @@
     {
       "comment_id": "1",
       "user_id": "1",
-      "comment": "string",
+      "comment": "아주 좋았어요~~",
       "createAt": "2023-04-26T12:43:55.480Z",
+      "updateAt": "2023-04-26T12:43:55.480Z"
+    },
+    {
+      "comment_id": "2",
+      "user_id": "1",
+      "comment": "아주 별로였어요....",
+      "createAt": "2023-02-26T12:43:55.480Z",
+      "updateAt": "2023-04-26T12:43:55.480Z"
+    },
+    {
+      "comment_id": "3",
+      "user_id": "1",
+      "comment": "안갈래요:(",
+      "createAt": "2023-02-21T12:43:55.480Z",
       "updateAt": "2023-04-26T12:43:55.480Z"
     }
   ]

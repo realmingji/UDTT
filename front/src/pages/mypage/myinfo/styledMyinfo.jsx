@@ -92,9 +92,10 @@ export const StyledButton = styled.button`
 
 export const SignoutDiv = styled.div`
   text-align: center;
+
   > p {
     font-size: 13px;
-    padding-left: 400px;
+    padding-left: 350px;
     color: rgb(140, 147, 142);
     &:hover {
       cursor: pointer;

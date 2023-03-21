@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { ROUTE } from '../../routes';
 import axios from 'axios';
 import Myinfo from './myinfo/myinfo';
 import Clublist from './clublist/Clublist';
@@ -15,14 +16,34 @@ export default function MyPage() {
   const [myClubList, setMyClubList] = useState([]);
   const [myCommentList, setMyCommentList] = useState([]);
 
+  // [ 사용자정보가져오기 ]
   // useEffect(() => {
-  //   // 사용자정보가져오기
-  //   axios
-  //     .get(`http://localhost:5001/users/${userId}`)
-  //     .then(res => setCustomerInfo(res.data));
+  //   axios.get(`http://localhost:5001/users/${userId}`).then(res => {
+  //     setCustomerInfo(res.data);
+  //     setJoinList(res.data.join_list);
+  //     setMyClubList(res.data.my_group_list);
+  //     setMyCommentList(res.data.comment_list);
+  //   });
   // }, []);
 
-  ///////////// test용_사용자정보가져오기  //////////////
+  // [ 닉네임변경 ]
+  // const submitChangedNickname = event => {
+  //   axios
+  //     .patch(`http://localhost:5001/users/${userId}`, userNickname)
+  //     .then(() => {
+  //       alert('닉네임이 변경되었습니다.');
+  //       setNickname('');
+  //     });
+  // };
+
+  // [ 회원탈퇴 ]
+  // const signout = () => {
+  //   axios
+  //     .delete(`http://localhost:5001/users/${userId}`)
+  //     .then(() => navigate({ROUTE.MAIN.link}));
+  // };
+
+  /////////////////////////// test용  ////////////////////////////
   useEffect(() => {
     axios.get('/data/customerInfo.json').then(res => {
       setCustomerInfo(res.data);
@@ -31,13 +52,6 @@ export default function MyPage() {
       setMyCommentList(res.data.comment_list);
     });
   }, []);
-  ///////////// test용_사용자정보가져오기  //////////////
-
-  ///////////// test용_모임리스트정보가져오기  //////////////
-  const getJoinListData = () => {
-    axios.get('/data/joinList.json').then(res => setJoinList(res.data));
-  };
-  ///////////// test용_모임리스트정보가져오기  //////////////
 
   const submitChangedNickname = event => {
     event.preventDefault();
@@ -45,20 +59,12 @@ export default function MyPage() {
     console.log(userNickname);
     alert('닉네임이 변경되었습니다.');
     setNickname('');
-
-    // axios
-    //   .patch(`http://localhost:5001/users/${userId}`, userNickname)
-    //   .then(() => {
-    //     alert('닉네임이 변경되었습니다.');
-    //     setNickname('');
-    //   });
   };
 
   const signout = () => {
-    // axios
-    //   .delete(`http://localhost:5001/users/${userId}`)
-    //   .then(() => navigate('/'));
+    navigate('/');
   };
+  /////////////////////////// test용  ////////////////////////////
 
   return (
     <S.Container>
@@ -151,7 +157,11 @@ export default function MyPage() {
       {/* 모임_주최모임 */}
       {currentSubTab === CURRENT_SUBTAB.MY_CLUB && (
         <S.ShowList>
-          {myClubList.length === 0 ? '주최한 모임이 없습니다.' : <Clublist />}
+          {myClubList.length === 0 ? (
+            '주최한 모임이 없습니다.'
+          ) : (
+            <Clublist data={myClubList} />
+          )}
         </S.ShowList>
       )}
 
@@ -161,7 +171,7 @@ export default function MyPage() {
           {myCommentList.length === 0 ? (
             '등록한 댓글이 없습니다.'
           ) : (
-            <Clublist />
+            <Clublist data={myCommentList} />
           )}
         </S.ShowList>
       )}

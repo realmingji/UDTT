@@ -34,11 +34,10 @@ export default function Myinfo({
           />
           <S.StyledButton>변경하기</S.StyledButton>
         </div>
+        <S.SignoutDiv>
+          <p onClick={signoutEvent}>회원탈퇴</p>
+        </S.SignoutDiv>
       </S.FormContainer>
-
-      <S.SignoutDiv>
-        <p onClick={signoutEvent}>회원탈퇴</p>
-      </S.SignoutDiv>
     </>
   );
 }
