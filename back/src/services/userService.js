@@ -9,7 +9,7 @@ class UserService {
     // 일반 회원가입
   async addUser(userInfo) {
     // 객체 destructuring
-    const { userId, userName, email, password } = userInfo;
+    const { userId, userName, password } = userInfo;
 
     // ID 중복 확인
     const user = await this.userModel.findByUserId(userId);
@@ -21,7 +21,7 @@ class UserService {
 
     // 비밀번호 해쉬화
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUserInfo = { userId, userName, email, password: hashedPassword };
+    const newUserInfo = { userId, userName, password: hashedPassword };
 
     // db에 저장
     const createdNewUser = await this.userModel.create(newUserInfo);

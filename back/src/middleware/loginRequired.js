@@ -11,7 +11,6 @@ function loginRequired(req, res, next) {
       result: "Unauthorized-approach",
       reason: "회원만 이용할 수 있는 서비스입니다.",
     });
-
     return;
   }
 

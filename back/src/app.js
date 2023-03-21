@@ -8,7 +8,7 @@ const { errorHandler } = require("./middlewares/errorHandler");
 app.get("/", (req, res) => {
   res.send('Hello, UDTT Started NodeJS Application');
 })
-app.listen(8080, () => console.log('8080 port listening on port'));
+app.listen(5000, () => console.log('5000 port listening on port'));
 
 
 app.use(cors()); //CORS 방지
