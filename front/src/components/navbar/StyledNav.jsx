@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   width: 100vw;
-  height: 20vh;
-  padding: 70px;
+  height: 15vh;
+  padding: 30px 70px;
 `;
 
 export const NavContainer = styled.div`
