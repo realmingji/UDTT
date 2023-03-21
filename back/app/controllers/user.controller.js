@@ -10,7 +10,6 @@ exports.create = (req,res)=>{
 
     const user = new User({
         nickname: req.body.nickname,
-        active: req.body.active
     });
 
     // 데이터베이스에 저장

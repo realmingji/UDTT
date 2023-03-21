@@ -5,13 +5,15 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// const serverURL = 'http://localhost:8080/auth/google/callback';
+// '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
 const serverURL = 'http://localhost:8080/api/login';
 
 const Login = () => {
   const navigate = useNavigate();
   //.env에 놔두면 왜 안 될까,,,,
   const googleClientId =
-    '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
+  '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
   //로그인 성공시 res처리
   const onLoginSuccess = async credentialResponse => {
     if (credentialResponse.credential !== null) {
@@ -30,7 +32,7 @@ const Login = () => {
 
   return (
     <div>
-      <GoogleOAuthProvider clientId={googleClientId}>
+      <GoogleOAuthProvider clientId="1041234435892-79jigtk310p01dmregvociv9osq9m6rv.apps.googleusercontent.com">
         <S.LoginContainer>
           <S.LoginTitle>소셜 로그인</S.LoginTitle>
           <GoogleLogin

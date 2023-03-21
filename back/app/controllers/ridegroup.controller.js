@@ -1,4 +1,4 @@
-const Group = require("../model/group.model.js");
+const Ridegroup = require("../model/ridegroup.model.js");
 
 // 새 객체 생성
 exports.create = (req,res)=>{
@@ -8,18 +8,20 @@ exports.create = (req,res)=>{
         });
     };
 
-    const group = new Group({
+    const ridegroup = new Ridegroup({
         title: req.body.title,
         info: req.body.info,
         status: req.body.status,
+        start_time: req.body.start_time,
+        start_time_end: req.body.start_time
     });
 
     // 데이터베이스에 저장
-    Group.create(group, (err, data) =>{
+    Ridegroup.create(ridegroup, (err, data) =>{
         if(err){
             res.status(500).send({
                 message:
-                err.message || "Some error occured while creating Group."
+                err.message || "Some error occured while creating Ridegroup."
             });
         };
     })
@@ -27,11 +29,11 @@ exports.create = (req,res)=>{
 
 // 전체 조회 
 exports.findAll = (req,res)=>{
-    group.getAll((err, data) => {
+    ridegroup.getAll((err, data) => {
         if (err)
           res.status(500).send({
             message:
-              err.message || "Some error occurred while retrieving groups."
+              err.message || "Some error occurred while retrieving ridegroups."
           });
         else res.send(data);
       });
@@ -39,15 +41,15 @@ exports.findAll = (req,res)=>{
 
 // id로 조회
 exports.findOne = (req,res)=>{
-    Group.findById(req.params.groupId, (err, data) => {
+    Ridegroup.findById(req.params.ridegroupId, (err, data) => {
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `Not found Group with id ${req.params.groupId}.`
+              message: `Not found Ridegroup with id ${req.params.ridegroupId}.`
             });
           } else {
             res.status(500).send({
-              message: "Error retrieving Group with id " + req.params.groupId
+              message: "Error retrieving Ridegroup with id " + req.params.ridegroupId
             });
           }
         } else res.send(data);
@@ -63,18 +65,18 @@ exports.update = (req,res)=>{
     });
   }
 
-  Group.updateById(
-    req.params.groupId,
+  Ridegroup.updateById(
+    req.params.ridegroupId,
     new Group(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Group with id ${req.params.groupId}.`
+            message: `Not found Ridegroup with id ${req.params.ridegroupId}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating Group with id " + req.params.groupId
+            message: "Error updating Ridegroup with id " + req.params.ridegroupId
           });
         }
       } else res.send(data);
@@ -84,30 +86,30 @@ exports.update = (req,res)=>{
 
 // id로 삭제
 exports.delete = (req,res)=>{
-    Group.remove(req.params.groupId, (err, data) => {
+    Ridegroup.remove(req.params.ridegroupId, (err, data) => {
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `Not found Group with id ${req.params.groupId}.`
+              message: `Not found Ridegroup with id ${req.params.ridegroupId}.`
             });
           } else {
             res.status(500).send({
-              message: "Could not delete Group with id " + req.params.groupId
+              message: "Could not delete Ridegroup with id " + req.params.ridegroupId
             });
           }
-        } else res.send({ message: `Group was deleted successfully!` });
+        } else res.send({ message: `Ridegroup was deleted successfully!` });
       });
 };
 
 // 전체 삭제
 exports.deleteAll = (req,res)=>{
-    Group.removeAll((err, data) => {
+    Ridegroup.removeAll((err, data) => {
         if (err)
           res.status(500).send({
             message:
-              err.message || "Some error occurred while removing all groups."
+              err.message || "Some error occurred while removing all ridegroups."
           });
-        else res.send({ message: `All Groups were deleted successfully!` });
+        else res.send({ message: `All Ridegroups were deleted successfully!` });
       });
 };
 

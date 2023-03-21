@@ -13,7 +13,11 @@ const connection = mysql.createConnection({
 // MySQL connection 실행
 connection.connect(error=>{
     if(error) throw error;
-    console.log("Successfully connected to the database. ");
-})
+    console.log("Successfully connected!!");
+    // connection.query("CREATE DATABASE udtt", function(err) {
+    //     if(err) throw err;
+    //     console.log("Database created");
+    // });
+});
 
 module.exports = connection;
