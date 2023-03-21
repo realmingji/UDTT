@@ -6,7 +6,9 @@
   "updateAt": "2023-04-20T13:43:53.480Z",
   "join_list": [
     {
+      "spot_id": "2",
       "group_id": "1",
+      "user_id": "3",
       "title": "참가모임1",
       "status": "진행중",
       "createAt": "2023-03-23T12:43:55.480Z",
@@ -14,6 +16,8 @@
       "comments_count": 0
     },
     {
+      "spot_id": "2",
+      "user_id": "3",
       "group_id": "2",
       "title": "참가모임2",
       "status": "모집완료",
@@ -22,6 +26,8 @@
       "comments_count": 3
     },
     {
+      "spot_id": "2",
+      "user_id": "3",
       "group_id": "3",
       "title": "참가모임3",
       "status": "모집완료",
@@ -32,6 +38,7 @@
   ],
   "my_group_list": [
     {
+      "spot_id": "2",
       "group_id": "1",
       "title": "나의개설모임1",
       "status": "진행중",

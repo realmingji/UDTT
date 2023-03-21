@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import Myinfo from './myinfo/myinfo';
 import Clublist from './clublist/Clublist';
 import * as S from './StyledMypage';
 
@@ -10,7 +10,7 @@ export default function MyPage() {
   const [customerInfo, setCustomerInfo] = useState('');
   const [currentTab, setCurrentTab] = useState('clubList');
   const [currentSubTab, setCurrentSubTab] = useState('join');
-  const [nickname, setNickname] = useState('join');
+  const [nickname, setNickname] = useState('');
   const [joinList, setJoinList] = useState([]);
   const [myClubList, setMyClubList] = useState([]);
   const [myCommentList, setMyCommentList] = useState([]);
@@ -24,7 +24,12 @@ export default function MyPage() {
 
   ///////////// test용_사용자정보가져오기  //////////////
   useEffect(() => {
-    axios.get('/data/customerInfo.json').then(res => setCustomerInfo(res.data));
+    axios.get('/data/customerInfo.json').then(res => {
+      setCustomerInfo(res.data);
+      setJoinList(res.data.join_list);
+      setMyClubList(res.data.my_group_list);
+      setMyCommentList(res.data.comment_list);
+    });
   }, []);
   ///////////// test용_사용자정보가져오기  //////////////
 
@@ -36,11 +41,17 @@ export default function MyPage() {
 
   const submitChangedNickname = event => {
     event.preventDefault();
-    let userNickname = { user_name: nickname };
+    let userNickname = { nickname: nickname };
     console.log(userNickname);
+    alert('닉네임이 변경되었습니다.');
+    setNickname('');
+
     // axios
     //   .patch(`http://localhost:5001/users/${userId}`, userNickname)
-    //   .then(() => alert('닉네임이 변경되었습니다.'));
+    //   .then(() => {
+    //     alert('닉네임이 변경되었습니다.');
+    //     setNickname('');
+    //   });
   };
 
   const signout = () => {
@@ -51,15 +62,17 @@ export default function MyPage() {
 
   return (
     <S.Container>
+      {/* 웰컴메세지 & 닉네임 */}
       <S.WelcomeMsg>
         <S.AccountIcon className="mat-icon" />
-        {/* 닉네임부분 변경예정 */}
         <p>
           안녕하세요 '<span className="nickname"> {customerInfo.nickname}</span>{' '}
           ' 님
         </p>
         <p>오늘도 환영합니다!</p>
       </S.WelcomeMsg>
+
+      {/* 주메뉴칼럼 데이터*/}
       <S.MenuTab>
         <ul className="tabs">
           <li
@@ -80,14 +93,14 @@ export default function MyPage() {
           </li>
         </ul>
       </S.MenuTab>
+
+      {/* 서브메뉴칼럼 데이터*/}
       {currentTab === CURRENT_TAB.CLUB_LIST && (
         <S.Subtitle>
           <div>
             <p
               onClick={() => {
                 setCurrentSubTab(CURRENT_SUBTAB.JOIN);
-                //함수명 수정예정
-                getJoinListData();
               }}
             >
               참여
@@ -95,8 +108,6 @@ export default function MyPage() {
             <p
               onClick={() => {
                 setCurrentSubTab(CURRENT_SUBTAB.MY_CLUB);
-                //함수명 수정예정
-                getJoinListData();
               }}
             >
               진행
@@ -104,7 +115,6 @@ export default function MyPage() {
             <p
               onClick={() => {
                 setCurrentSubTab(CURRENT_SUBTAB.MY_COMMENT);
-                getJoinListData();
               }}
             >
               코멘트
@@ -113,33 +123,21 @@ export default function MyPage() {
           <S.Line widthLength="50%" />
         </S.Subtitle>
       )}
+
+      {/* 내정보관리 */}
       {currentTab === CURRENT_TAB.MY_INFO && (
-        <>
-          <S.Subtitle>
-            <p>나의 정보 관리</p>
-            <S.Line widthLength="50%" />
-          </S.Subtitle>
-          <S.FormContainer onSubmit={submitChangedNickname}>
-            <div className="form-field">
-              <label htmlFor="nickname">닉네임</label>
-              <input
-                required
-                id="nickname"
-                type="text"
-                name="nickname"
-                placeholder="변경할 닉네임을 입력해 주세요"
-                onChange={e => {
-                  setNickname(e.target.value);
-                }}
-              />
-            </div>
-            <S.StyledButton>변경하기</S.StyledButton>
-          </S.FormContainer>
-          <S.SignoutDiv>
-            <p onClick={signout}>회원탈퇴</p>
-          </S.SignoutDiv>
-        </>
+        <Myinfo
+          submitEvent={submitChangedNickname}
+          setNicknameEvent={setNickname}
+          signoutEvent={signout}
+          nicknameValue={nickname}
+          customerInfo={customerInfo}
+        />
       )}
+
+      {/* 내모임관리 */}
+
+      {/* 모임_참여모임 */}
       {currentSubTab === CURRENT_SUBTAB.JOIN && (
         <S.ShowList>
           {joinList.length === 0 ? (
@@ -149,11 +147,15 @@ export default function MyPage() {
           )}
         </S.ShowList>
       )}
+
+      {/* 모임_주최모임 */}
       {currentSubTab === CURRENT_SUBTAB.MY_CLUB && (
         <S.ShowList>
           {myClubList.length === 0 ? '주최한 모임이 없습니다.' : <Clublist />}
         </S.ShowList>
       )}
+
+      {/* 모임_코멘트 */}
       {currentSubTab === CURRENT_SUBTAB.MY_COMMENT && (
         <S.ShowList>
           {myCommentList.length === 0 ? (
@@ -167,13 +169,15 @@ export default function MyPage() {
   );
 }
 
+// 탭메뉴(주) 상수데이터
 const CURRENT_TAB = {
   CLUB_LIST: 'clubList',
   MY_INFO: 'myinfo',
 };
 
+// 탭메뉴(서브) 상수데이터
 const CURRENT_SUBTAB = {
-  JOIN: 'clubList',
+  JOIN: 'join',
   MY_CLUB: 'myinfo',
   MY_COMMENT: 'comment',
 };
