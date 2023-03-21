@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema(
   {
-    userId: { 
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "groups",
+      ref: 'groups',
       required: true,
     },
     userName: {
@@ -17,9 +17,9 @@ const UserSchema = new mongoose.Schema(
     },
   },
   {
-    collection: "users",
+    collection: 'users',
     timestamps: true,
-  }
+  },
 );
 
-module.exports = mongoose.model("users", UserSchema);
+module.exports = mongoose.model('users', UserSchema);

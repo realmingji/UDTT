@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const userRouter = express.Router();
-const { userService } = require("../services/userService");
-const { loginRequired } = require("../middlewares/loginRequired");
+const { userService } = require('../services/userService');
+const { loginRequired } = require('../middlewares/loginRequired');
 
 //회원가입
-userRouter.post("/register", async (req, res, next) => {
+userRouter.post('/register', async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
     const { userId, userName, email, password } = req.body;
@@ -23,7 +23,7 @@ userRouter.post("/register", async (req, res, next) => {
 });
 
 //로그인
-userRouter.post("/login", async function (req, res, next) {
+userRouter.post('/login', async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
     const userId = req.body.userId;
@@ -40,7 +40,7 @@ userRouter.post("/login", async function (req, res, next) {
 });
 
 // 로그인한 사용자 정보 불러오기
-userRouter.get("/users", loginRequired, async function (req, res, next) {
+userRouter.get('/users', loginRequired, async function (req, res, next) {
   try {
     const userId = req.currentUserId;
     const currentUserInfo = await userService.getUserData(userId);
@@ -53,7 +53,7 @@ userRouter.get("/users", loginRequired, async function (req, res, next) {
 
 // 사용자 정보 수정
 userRouter.patch(
-  "/users/:userId",
+  '/users/:userId',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -68,7 +68,7 @@ userRouter.patch(
 
       // currentPassword 없을 시, 진행 불가
       if (!currentPassword) {
-        throw new Error("정보를 변경 하려면, 본인 확인이 필요합니다.");
+        throw new Error('정보를 변경 하려면, 본인 확인이 필요합니다.');
       }
 
       const userInfoRequired = { userId, currentPassword };
@@ -82,19 +82,19 @@ userRouter.patch(
       // 사용자 정보를 업데이트함.
       const updatedUserInfo = await userService.setUser(
         userInfoRequired,
-        toUpdate
+        toUpdate,
       );
 
       res.status(200).json(updatedUserInfo);
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
 //사용자 삭제
 userRouter.delete(
-  "/users/:userId",
+  '/users/:userId',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -107,12 +107,12 @@ userRouter.delete(
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
 //수정, 삭제 전 현재 비밀번호 확인
 userRouter.post(
-  "/users/currentPassword",
+  '/users/currentPassword',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -127,7 +127,7 @@ userRouter.post(
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
 module.exports = userRouter;

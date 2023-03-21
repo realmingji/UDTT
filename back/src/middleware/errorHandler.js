@@ -1,5 +1,3 @@
-
-
 function errorHandler(error, req, res, next) {
   logger.error(error.stack);
 

@@ -1,7 +1,7 @@
-const { model } = require("mongoose");
-const { UserSchema } = require("../schemas/userSchema");
+const { model } = require('mongoose');
+const { UserSchema } = require('../schemas/userSchema');
 
-const User = model("users", UserSchema);
+const User = model('users', UserSchema);
 class UserModel {
   async findById(userId) {
     const user = await User.findOne({ _id: userId });
@@ -28,7 +28,7 @@ class UserModel {
     const updatedUser = await User.findOneAndUpdate(
       filter,
       { password: newPasswordHash },
-      option
+      option,
     );
     return updatedUser;
   }
