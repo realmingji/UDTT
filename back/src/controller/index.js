@@ -1,1 +1,1 @@
-//pritt
+//prittier 적용
