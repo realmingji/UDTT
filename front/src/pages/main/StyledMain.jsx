@@ -28,4 +28,21 @@ export const MainContainer = styled.div`
       padding: 10px;
     }
   }
+  iframe {
+    position: relative;
+  }
+  .right {
+    position: absolute;
+    right: 160px;
+    font-size: 50px;
+    cursor: pointer;
+    color: #4fc95b;
+  }
+  .left {
+    position: absolute;
+    left: 160px;
+    font-size: 50px;
+    cursor: pointer;
+    color: #4fc95b;
+  }
 `;
