@@ -14,10 +14,12 @@ const GroupSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    //모임 시작 시간
     startTime: {
       type: Date,
       required: true,
     },
+    //모임 종료 시간
     endTime: {
       type: Date,
       required: true,
@@ -25,10 +27,16 @@ const GroupSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: ['Open', 'Close'],
+      default: 'Open',
     },
-    leaderID: {
+    userID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+    },
+    // 장소 추가필요(11개 spot)
+    spotId: {
+      type: String,
+      enum: ['', '', '', ''],
     },
   },
   {

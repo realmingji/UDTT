@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const userRouter = require('./routes/userRouter');
-const Router = require('./routes/Router');
+const groupRouter = require('./routes/groupRouter');
 const Router = require('./routes/Router');
 const { errorHandler } = require('./middlewares/errorHandler');
 
@@ -17,7 +17,7 @@ app.use(express.json());
 
 // api 라우팅
 app.use('/api', userRouter);
-app.use('/api', Router);
+app.use('/api', groupRouter);
 app.use('/api', Router);
 
 // Error Handler
