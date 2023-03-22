@@ -5,12 +5,12 @@ const { userService } = require('../services/userService');
 userRouter.post('/register', async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
-    const { userId, userName, email, password } = req.body;
+    const { userId, nickname, email, password } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userService.addUser({
       userId,
-      userName,
+      nickname,
       email,
       password,
     });
@@ -24,12 +24,12 @@ userRouter.post('/register', async (req, res, next) => {
 userRouter.post('/login', async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
+    const userEmail = req.body.userEmail;
     const password = req.body.password;
 
     // 위 데이터가 db에 있는지 확인하고,
-    // db 있을 시 로그인 성공 및, 토큰 및 관리자 여부 받아오기
-    const loginResult = await userService.getUserToken({ userId, password });
+    // db 있을 시 로그인 성공 및, 토큰 여부 받아오기
+    const loginResult = await userService.getUserToken({ userEmail, password });
 
     res.status(200).json(loginResult);
   } catch (error) {
@@ -56,7 +56,7 @@ userRouter.patch('/users/:userId', async function (req, res, next) {
     const { userId } = req.params;
 
     // body data 로부터 업데이트할 사용자 정보를 추출함.
-    const { userName, password } = req.body;
+    const { nickname, password } = req.body;
 
     // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
     const currentPassword = req.body.currentPassword;
@@ -70,7 +70,7 @@ userRouter.patch('/users/:userId', async function (req, res, next) {
 
     // 위 데이터가 undefined가 아니라면, 업데이트용 객체에 삽입
     const toUpdate = {
-      ...(userName && { userName }),
+      ...(userName && { nickname }),
       ...(password && { password }),
     };
 
@@ -104,11 +104,11 @@ userRouter.delete('/users/:userId', async function (req, res, next) {
 userRouter.post('/users/currentPassword', async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
-    const userId = req.currentUserId;
+    const userEmail = req.currentUserEmail;
     const password = req.body.password;
 
     // 비밀번호가 알맞는지 여부를 체크함
-    const checkResult = await userService.checkUserPassword(userId, password);
+    const checkResult = await userService.checkUserPassword(userEmail, password);
 
     res.status(200).json(checkResult);
   } catch (error) {

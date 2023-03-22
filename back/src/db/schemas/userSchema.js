@@ -7,7 +7,11 @@ const UserSchema = new mongoose.Schema(
       ref: 'groups',
       required: true,
     },
-    userName: {
+    nickName: {
+      type: String,
+      required: true,
+    },
+    email: {
       type: String,
       required: true,
     },

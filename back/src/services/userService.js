@@ -9,19 +9,19 @@ class UserService {
   // 일반 회원가입
   async addUser(userInfo) {
     // 객체 destructuring
-    const { userId, userName, password } = userInfo;
+    const { userId, nickname, email, password } = userInfo;
 
     // ID 중복 확인
-    const user = await this.userModel.findByUserId(userId);
+    const user = await this.userModel.findByUserEmail(userEmail);
     if (user) {
       throw new Error(
-        '이 아이디는 현재 사용중입니다. 다른 아이디로 이용해 주세요.',
+        '이 이메일은 현재 사용중 입니다. 다른 이메일로 이용해 주세요.',
       );
     }
 
     // 비밀번호 해쉬화
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUserInfo = { userId, userName, password: hashedPassword };
+    const newUserInfo = { userId, nickname, email, password: hashedPassword };
 
     // db에 저장
     const createdNewUser = await this.userModel.create(newUserInfo);
