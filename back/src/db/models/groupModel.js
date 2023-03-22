@@ -4,19 +4,21 @@ const { GroupSchema } = require('../schemas/groupSchema');
 const Group = model('groups', GroupSchema);
 class GroupModel {
   //모임 메인 페이지 조회
-  async findAll({});
+  // async findAll({
+
+  // })
 
   //모임별 상세 페이지
   async findByGroup(groupId) {
-    const group = await Group.find({group_Id: groupId});
+    const group = await Group.find({ group_Id: groupId });
     return group;
   }
 
   //spot별 페이지
   async findBySpot(spotId) {
-    const spot = await Group.find({spotId: spotId});
+    const spot = await Group.find({ spotId: spotId });
     return spot;
-  };
+  }
 
   //마이페이지 내가 참여한 모임 조회
   async findByUser(userId) {

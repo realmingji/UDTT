@@ -1,26 +1,37 @@
 const express = require('express');
-const app = express();
+const dotenv = require('dotenv');
+const cors = require('cors');
 const userRouter = require('./routes/userRouter');
 const groupRouter = require('./routes/groupRouter');
-const Router = require('./routes/Router');
-const { errorHandler } = require('./middlewares/errorHandler');
+const commentRouter = require('./routes/commentRouter');
 
-app.get('/', (req, res) => {
-  res.send('Hello, UDTT Started NodeJS Application');
-});
-app.listen(5000, () => console.log('5000 port listening on port'));
+// const { errorHandler } = require('./middlewares/errorHandler');
+// const { loginRequired } = require('./middleware/loginRequired');
+
+const db = require('./db/db');
+
+dotenv.config();
+
+const app = express();
 
 app.use(cors()); //CORS 방지
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // api 라우팅
 app.use('/api', userRouter);
 app.use('/api', groupRouter);
-app.use('/api', Router);
+app.use('/api', commentRouter);
 
 // Error Handler
-app.use(errorHandler);
+// app.use(errorHandler);
+// app.use(loginRequired);
 
-module.exports = { app };
+app.get('/', (req, res) => {
+  res.send('Hello, UDTT Started NodeJS Application');
+});
+
+app.listen(process.env.PORT, () => {
+  console.log('포트가 열렸습니다.');
+  db();
+});
