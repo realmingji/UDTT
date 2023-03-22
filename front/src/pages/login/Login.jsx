@@ -1,47 +1,70 @@
 import React, { useState } from 'react';
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import * as S from './StyledLogin';
-import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-// const serverURL = 'http://localhost:8080/auth/google/callback';
-// '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
-const serverURL = 'http://localhost:8080/api/login';
-
 const Login = () => {
   const navigate = useNavigate();
-  //.env에 놔두면 왜 안 될까,,,,
-  const googleClientId =
-  '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
-  //로그인 성공시 res처리
-  const onLoginSuccess = async credentialResponse => {
-    if (credentialResponse.credential !== null) {
-      const userCredential = jwtDecode(credentialResponse.credential);
-      console.log(userCredential);
-      try {
-        const res = await axios.post(serverURL, { userCredential });
-        console.log(res.data, '성공');
-        navigate('/');
-      } catch (err) {
-        console.log(err, '실패');
-      }
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if (email.length === 0 || password.length === 0) {
+      setErrMsg(() => '이메일과 비밀번호를 입력해 주세요.');
+
+      //임시 아이디 & 비밀번호
+    } else if (email === 'test@test.com' && password === '1111') {
+      alert('로그인이 완료되었습니다!');
+      navigate('/users/groups');
     } else {
+      try {
+        const response = await axios.post(`http://localhost:5050/login`, {
+          userEmail: email,
+          userPassword: password,
+        });
+        //localStorage에 token값 저장
+        localStorage.setItem('token', response.data.token);
+        window.location.reload();
+        alert('로그인이 완료되었습니다!');
+        navigate('users/groups');
+      } catch (error) {
+        setErrMsg(() => '아이디와 비밀번호를 다시 확인해주세요.');
+      }
     }
   };
 
   return (
     <div>
-      <GoogleOAuthProvider clientId="1041234435892-79jigtk310p01dmregvociv9osq9m6rv.apps.googleusercontent.com">
-        <S.LoginContainer>
-          <S.LoginTitle>소셜 로그인</S.LoginTitle>
-          <GoogleLogin
-            buttonText="구글로 로그인"
-            onSuccess={onLoginSuccess}
-            onFailure={res => console.log(res, '실패')}
-          />
-        </S.LoginContainer>
-      </GoogleOAuthProvider>
+      <S.LoginForm onSubmit={handleSubmit}>
+        <S.FormContainer>
+          <S.FormFieldset>
+            <S.FormLabel htmlFor="email">이메일: </S.FormLabel>
+            <S.FormInput
+              value={email}
+              type="email"
+              placeholder="email"
+              onChange={e => setEmail(e.target.value)}
+            />
+          </S.FormFieldset>
+          <S.FormFieldset>
+            <S.FormLabel htmlFor="password">비밀번호: </S.FormLabel>
+            <S.FormInput
+              value={password}
+              type="password"
+              placeholder="password"
+              onChange={e => setPassword(e.target.value)}
+            />
+          </S.FormFieldset>
+          <S.FormSubmitButton type="submit" onClick={handleSubmit}>
+            Login
+          </S.FormSubmitButton>
+          <S.FormErrorMessage>
+            {errMsg && <text>{errMsg}</text>}
+          </S.FormErrorMessage>
+        </S.FormContainer>
+      </S.LoginForm>
     </div>
   );
 };
