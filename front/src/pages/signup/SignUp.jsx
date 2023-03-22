@@ -1,71 +1,106 @@
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import * as S from './StyledSignUp';
 
-export const LoginTitle = styled.div`
-  font-size: 20px;
-  text-align: center;
-  color: #1ca82a;
-  padding: 50px;
-`;
+const SignUp = () => {
+  const navigate = useNavigate();
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPw, setConfirmPw] = useState('');
+  const [errMsg, setErrMsg] = useState([]);
 
-export const LoginForm = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 75vh;
-  width: 100%;
-`;
-export const FormContainer = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px #1ca82a solid;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const userData = {
+      userName: nickname,
+      userEmail: email,
+      userPassword: password,
+    };
+    if (password !== confirmPw) {
+      setErrMsg(() => '비밀번호가 일치하지 않습니다.');
+      return;
+    }
+    if (nickname.length < 2) {
+      setErrMsg(() => '2글자 이상의 닉네임을 입력해주세요.');
+    }
+    if (nickname.length === 0 || email.length === 0 || password.length === 0) {
+      setErrMsg(() => '닉네임, 이메일, 비밀번호를 입력해 주세요.');
+      return;
+    }
+    try {
+      await axios.post(`http://localhost:5050/register`, { ...userData });
+      alert('회원가입에 성공했습니다.');
+      navigate('/login');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-export const FormFieldset = styled.fieldset`
-  text-transform: uppercase;
-  border-style: none;
-  width: 400px;
-  margin: 0;
-  padding: 0;
-  border: none;
-`;
+  return (
+    <div>
+      <S.Form onSubmit={handleSubmit}>
+        <S.FormContainer>
+          <S.Fieldset>
+            <label>닉네임: </label>
+            <input
+              onChange={e => setNickname(e.target.value)}
+              placeholder="nickname"
+              required
+              value={nickname}
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="off"
+            />
+          </S.Fieldset>
+          <S.Fieldset>
+            <label>이메일: </label>
+            <input
+              placeholder="email"
+              onChange={e => setEmail(e.target.value)}
+              required
+              value={email}
+              id="email"
+              type="email"
+              name="email"
+              autocomplete="off"
+            />
+          </S.Fieldset>
+          <S.Fieldset>
+            <label>비밀번호: </label>
+            <input
+              required
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+              id="password"
+              type="password"
+              name="password"
+              placeholder="password"
+            />
+          </S.Fieldset>
+          <S.Fieldset>
+            <label>비밀번호 재확인: </label>
+            <input
+              required
+              onChange={e => setConfirmPw(e.target.value)}
+              id="ConfirmPw"
+              type="password"
+              name="confirmPassword"
+              placeholder="confirm password"
+            />
+          </S.Fieldset>
+          <S.FormErrorMessage>
+            {errMsg && <text>{errMsg}</text>}
+          </S.FormErrorMessage>
+          <S.RegisterButton type="submit" onClick={handleSubmit}>
+            가입하기
+          </S.RegisterButton>
+        </S.FormContainer>
+      </S.Form>
+    </div>
+  );
+};
 
-export const FormLabel = styled.label`
-  letter-spacing: 3px;
-  font-size: 1rem;
-`;
-
-export const FormInput = styled.input`
-  width: 50%;
-  border-radius: 6px;
-  border-style: solid;
-  border-width: 1px;
-  padding: 5px 0px;
-  text-indent: 6px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-`;
-
-export const FormSubmitButton = styled.button`
-  border-style: none;
-  border-radius: 5px;
-  background-color: #1ca82a;
-  color: white;
-  padding: 8px 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  display: block;
-  margin-top: 10px;
-  cursor: pointer;
-`;
-
-export const FormErrorMessage = styled.p`
-  color: red;
-  text-align: center;
-  margin-top: 10px;
-`;
+export default SignUp;

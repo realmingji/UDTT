@@ -1,34 +1,72 @@
-import React from 'react';
-import { ROUTE } from '../../routes';
-import { Link, useNavigate } from 'react-router-dom';
-import * as S from './StyledNav';
+import React, { useState } from 'react';
+import * as S from './StyledLogin';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
+const Login = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if (email.length === 0 || password.length === 0) {
+      setErrMsg(() => '이메일과 비밀번호를 입력해 주세요.');
+
+      //임시 아이디 & 비밀번호
+    } else if (email === 'test@test.com' && password === '1111') {
+      alert('로그인이 완료되었습니다!');
+      navigate('/users/groups');
+    } else {
+      try {
+        const response = await axios.post(`http://localhost:5050/login`, {
+          userEmail: email,
+          userPassword: password,
+        });
+        //localStorage에 token값 저장
+        localStorage.setItem('token', response.data.token);
+        window.location.reload();
+        alert('로그인이 완료되었습니다!');
+        navigate('users/groups');
+      } catch (error) {
+        setErrMsg(() => '아이디와 비밀번호를 다시 확인해주세요.');
+      }
+    }
+  };
+
   return (
-    <S.MainContainer>
-      <S.NavContainer>
-        <S.MainTitle>
-          <Link to={ROUTE.MAIN.link}>우당탕탕</Link>
-        </S.MainTitle>
-        <S.NavBar>
-          <span>
-            <Link to={ROUTE.LOGIN.link}>로그인</Link>
-          </span>
-          <span>
-            {/* userid받는부분 수정예정 */}
-            <Link to={ROUTE.MYPAGE.link}>마이페이지</Link>
-          </span>
-          <span>
-            <Link to={ROUTE.COMMUNITYMAIN.link}>라이더모임</Link>
-          </span>
-          <span>
-            <Link to="">경로추천</Link>
-          </span>
-        </S.NavBar>
-      </S.NavContainer>
-    </S.MainContainer>
+    <div>
+      <S.LoginForm onSubmit={handleSubmit}>
+        <S.FormContainer>
+          <S.FormFieldset>
+            <S.FormLabel htmlFor="email">이메일: </S.FormLabel>
+            <S.FormInput
+              value={email}
+              type="email"
+              placeholder="email"
+              onChange={e => setEmail(e.target.value)}
+            />
+          </S.FormFieldset>
+          <S.FormFieldset>
+            <S.FormLabel htmlFor="password">비밀번호: </S.FormLabel>
+            <S.FormInput
+              value={password}
+              type="password"
+              placeholder="password"
+              onChange={e => setPassword(e.target.value)}
+            />
+          </S.FormFieldset>
+          <S.FormSubmitButton type="submit" onClick={handleSubmit}>
+            Login
+          </S.FormSubmitButton>
+          <S.FormErrorMessage>
+            {errMsg && <text>{errMsg}</text>}
+          </S.FormErrorMessage>
+        </S.FormContainer>
+      </S.LoginForm>
+    </div>
   );
 };
 
-export default NavBar;
+export default Login;
