@@ -1,49 +1,34 @@
-import React, { useState } from 'react';
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import * as S from './StyledLogin';
-import jwtDecode from 'jwt-decode';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { ROUTE } from '../../routes';
+import { Link, useNavigate } from 'react-router-dom';
+import * as S from './StyledNav';
 
-// const serverURL = 'http://localhost:8080/auth/google/callback';
-// '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
-const serverURL = 'http://localhost:8080/api/login';
-
-const Login = () => {
+const NavBar = () => {
   const navigate = useNavigate();
-  //.env에 놔두면 왜 안 될까,,,,
-  const googleClientId =
-  '271847378830-j6eamq27m0ifuu5vkuc6n6c9ufup57p9.apps.googleusercontent.com';
-  //로그인 성공시 res처리
-  const onLoginSuccess = async credentialResponse => {
-    if (credentialResponse.credential !== null) {
-      const userCredential = jwtDecode(credentialResponse.credential);
-      console.log(userCredential);
-      try {
-        const res = await axios.post(serverURL, { userCredential });
-        console.log(res.data, '성공');
-        navigate('/');
-      } catch (err) {
-        console.log(err, '실패');
-      }
-    } else {
-    }
-  };
-
   return (
-    <div>
-      <GoogleOAuthProvider clientId="1041234435892-79jigtk310p01dmregvociv9osq9m6rv.apps.googleusercontent.com">
-        <S.LoginContainer>
-          <S.LoginTitle>소셜 로그인</S.LoginTitle>
-          <GoogleLogin
-            buttonText="구글로 로그인"
-            onSuccess={onLoginSuccess}
-            onFailure={res => console.log(res, '실패')}
-          />
-        </S.LoginContainer>
-      </GoogleOAuthProvider>
-    </div>
+    <S.MainContainer>
+      <S.NavContainer>
+        <S.MainTitle>
+          <Link to={ROUTE.MAIN.link}>우당탕탕</Link>
+        </S.MainTitle>
+        <S.NavBar>
+          <span>
+            <Link to={ROUTE.LOGIN.link}>로그인</Link>
+          </span>
+          <span>
+            {/* userid받는부분 수정예정 */}
+            <Link to={ROUTE.MYPAGE.link}>마이페이지</Link>
+          </span>
+          <span>
+            <Link to={ROUTE.COMMUNITYMAIN.link}>라이더모임</Link>
+          </span>
+          <span>
+            <Link to="">경로추천</Link>
+          </span>
+        </S.NavBar>
+      </S.NavContainer>
+    </S.MainContainer>
   );
 };
 
-export default Login;
+export default NavBar;
