@@ -13,4 +13,6 @@ commentRouter.post('/comment', async (req, res) => {
     res.json(error);
   }
 });
+
+// commentRouter.get();
 module.exports = commentRouter;
