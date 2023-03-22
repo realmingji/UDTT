@@ -14,21 +14,22 @@ const SignUp = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const userData = {
-      userName: nickname,
-      userEmail: email,
-      userPassword: password,
+      nickName: nickname,
+      email: email,
+      password: password,
     };
-    if (password !== confirmPw) {
-      setErrMsg(() => '비밀번호가 일치하지 않습니다.');
-      return;
-    }
-    if (nickname.length < 2) {
-      setErrMsg(() => '2글자 이상의 닉네임을 입력해주세요.');
-    }
     if (nickname.length === 0 || email.length === 0 || password.length === 0) {
       setErrMsg(() => '닉네임, 이메일, 비밀번호를 입력해 주세요.');
       return;
     }
+    if (nickname.length < 3) {
+      setErrMsg(() => '3글자 이상의 닉네임을 입력해주세요.');
+    }
+    if (password !== confirmPw) {
+      setErrMsg(() => '비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
     try {
       await axios.post(`http://localhost:5050/register`, { ...userData });
       alert('회원가입에 성공했습니다.');

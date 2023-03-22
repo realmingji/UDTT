@@ -21,8 +21,8 @@ const Login = () => {
     } else {
       try {
         const response = await axios.post(`http://localhost:5050/login`, {
-          userEmail: email,
-          userPassword: password,
+          email: email,
+          password: password,
         });
         //localStorage에 token값 저장
         localStorage.setItem('token', response.data.token);

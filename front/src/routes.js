@@ -23,7 +23,7 @@ export const ROUTE = {
     link: '/logout',
     element: Logout,
   },
-  SignUp: {
+  SIGNUP: {
     path: '/register',
     link: '/register',
     element: SignUp,
