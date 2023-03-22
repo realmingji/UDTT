@@ -1,3 +1,6 @@
+const express = require('express');
+const router = express.Router();
+
 router.get(
   '/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }),
@@ -11,3 +14,5 @@ router.get(
     res.redirect('/');
   },
 );
+
+module.exports = router;

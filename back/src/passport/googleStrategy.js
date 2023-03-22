@@ -1,10 +1,13 @@
 const passport = require('passport');
+const dotenv = require('dotenv');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const User = require('../db/models/user');
+dotenv.config();
 
 module.exports = () => {
   passport.use(
+    console.log(GOOGLE_ID),
     new GoogleStrategy(
       {
         clientID: process.env.GOOGLE_ID, // 구글 로그인에서 발급받은 REST API 키
