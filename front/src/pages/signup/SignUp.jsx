@@ -9,13 +9,13 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
-  const [errMsg, setErrMsg] = useState([]);
+  const [errMsg, setErrMsg] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
     const userData = {
       nickName: nickname,
-      email: email,
+      userId: email,
       password: password,
     };
     if (nickname.length === 0 || email.length === 0 || password.length === 0) {
@@ -29,7 +29,8 @@ const SignUp = () => {
       setErrMsg(() => '비밀번호가 일치하지 않습니다.');
       return;
     }
-
+    //확인용 (나중에 지우기)
+    console.log(userData);
     try {
       await axios.post(`http://localhost:5050/register`, { ...userData });
       alert('회원가입에 성공했습니다.');
@@ -50,8 +51,6 @@ const SignUp = () => {
               placeholder="nickname"
               required
               value={nickname}
-              id="name"
-              name="name"
               type="text"
               autocomplete="off"
             />
@@ -63,9 +62,7 @@ const SignUp = () => {
               onChange={e => setEmail(e.target.value)}
               required
               value={email}
-              id="email"
               type="email"
-              name="email"
               autocomplete="off"
             />
           </S.Fieldset>
@@ -75,9 +72,7 @@ const SignUp = () => {
               required
               onChange={e => setPassword(e.target.value)}
               value={password}
-              id="password"
               type="password"
-              name="password"
               placeholder="password"
             />
           </S.Fieldset>
@@ -86,9 +81,8 @@ const SignUp = () => {
             <input
               required
               onChange={e => setConfirmPw(e.target.value)}
-              id="ConfirmPw"
+              value={confirmPw}
               type="password"
-              name="confirmPassword"
               placeholder="confirm password"
             />
           </S.Fieldset>

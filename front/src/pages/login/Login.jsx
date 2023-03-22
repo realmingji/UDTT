@@ -13,15 +13,10 @@ const Login = () => {
     e.preventDefault();
     if (email.length === 0 || password.length === 0) {
       setErrMsg(() => '이메일과 비밀번호를 입력해 주세요.');
-
-      //임시 아이디 & 비밀번호
-    } else if (email === 'test@test.com' && password === '1111') {
-      alert('로그인이 완료되었습니다!');
-      navigate('/users/groups');
     } else {
       try {
         const response = await axios.post(`http://localhost:5050/login`, {
-          email: email,
+          userId: email,
           password: password,
         });
         //localStorage에 token값 저장
