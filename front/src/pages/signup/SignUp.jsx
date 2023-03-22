@@ -37,6 +37,7 @@ const SignUp = () => {
       navigate('/login');
     } catch (err) {
       console.log(err);
+      alert('회원가입에 실패하였습니다. 다시 시도해주세요.');
     }
   };
 
@@ -49,7 +50,9 @@ const SignUp = () => {
             <input
               onChange={e => setNickname(e.target.value)}
               placeholder="nickname"
+              id="nickname"
               required
+              name="nickname"
               value={nickname}
               type="text"
               autocomplete="off"
@@ -63,6 +66,8 @@ const SignUp = () => {
               required
               value={email}
               type="email"
+              id="userId"
+              name="userId"
               autocomplete="off"
             />
           </S.Fieldset>
@@ -74,6 +79,8 @@ const SignUp = () => {
               value={password}
               type="password"
               placeholder="password"
+              name="password"
+              id="password"
             />
           </S.Fieldset>
           <S.Fieldset>
@@ -84,6 +91,8 @@ const SignUp = () => {
               value={confirmPw}
               type="password"
               placeholder="confirm password"
+              id="confirmPw"
+              name="confirmPw"
             />
           </S.Fieldset>
           <S.FormErrorMessage>
