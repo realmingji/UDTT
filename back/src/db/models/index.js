@@ -1,0 +1,1 @@
+//prittier 적용
