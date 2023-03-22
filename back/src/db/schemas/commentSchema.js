@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 
 const CommentSchema = new mongoose.Schema(
   {
-    userId: {
+    authourId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
+      ref: 'users',
       required: true,
     },
-    commentId: {
-      type: String,
+    groupId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'groups',
       required: true,
     },
     content: {
@@ -17,9 +18,9 @@ const CommentSchema = new mongoose.Schema(
     },
   },
   {
-    collection: 'comment',
+    collection: 'comments',
     timestamps: true,
   },
 );
 
-module.exports = mongoose.model('comment', CommentSchema);
+module.exports = mongoose.model('comments', CommentSchema);

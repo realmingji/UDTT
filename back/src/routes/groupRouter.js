@@ -1,8 +1,9 @@
 const express = require('express');
 const groupRouter = express.Router();
 const { groupService } = require('../services/groupService');
+const { loginRequired } = require('../middleware/loginRequired');
 
-groupRouter.post('/groups', async (req, res, next) => {
+groupRouter.post('/groups', loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
     const { title, info, startTime, endTime, status, spotId } = req.body;
