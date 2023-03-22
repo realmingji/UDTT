@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const CommentSchema = new mongoose.Schema(
-  {
+  { // 작성자
     authourId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users',
