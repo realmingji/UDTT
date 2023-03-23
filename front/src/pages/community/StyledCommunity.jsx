@@ -4,6 +4,7 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DatePicker from 'react-datepicker';
 
+/*CommunityMain */
 export const BoardBox = styled.div`
   width: 70%;
   height: 100px;
@@ -24,8 +25,8 @@ export const BoardBox = styled.div`
   }
 `;
 
-export const AddBtn = styled(AddCircleIcon)`
-  font-size: large;
+export const AddBtn = styled.div`
+  font-size: 30px;
   color: #1ca82a;
   position: fixed;
   right: 25px;
@@ -46,7 +47,7 @@ export const Comment = styled.div`
 export const CommentIcon = styled(ChatBubbleOutlineIcon)`
   margin-right: 2px;
 `;
-
+/*CommunityWrite */
 export const WriteBoard = styled.div`
   width: 70%;
   margin: auto;
@@ -69,9 +70,15 @@ export const Input = styled.input`
   ::placeholder {
     color: #929292;
   }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 5px;
+  }
 `;
 
-export const WriteTextarea = styled.textarea`
+export const WriteTextarea = styled.textarea.attrs({ maxLength: 450 })`
   width: 100%;
   height: 60%;
   font-size: 20px;
@@ -102,6 +109,7 @@ export const SelectDate = styled(DatePicker)`
   font-weight: bold;
   background-color: transparent;
   margin-bottom: 15px;
+  outline: none;
 `;
 
 export const BtnContainer = styled.div`
@@ -113,7 +121,7 @@ export const BtnContainer = styled.div`
     cursor: pointer;
   }
 `;
-
+/* CommunityDetail */
 export const DetailBoard = styled.div`
   width: 70%;
   margin: auto;
