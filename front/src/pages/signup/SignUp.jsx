@@ -32,7 +32,7 @@ const SignUp = () => {
     //확인용 (나중에 지우기)
     console.log(userData);
     try {
-      await axios.post(`http://localhost:5050/register`, { ...userData });
+      await axios.post(`http://localhost:5050/api/register`, { ...userData });
       alert('회원가입에 성공했습니다.');
       navigate('/login');
     } catch (err) {
@@ -81,6 +81,7 @@ const SignUp = () => {
               placeholder="password"
               name="password"
               id="password"
+              autocomplete="off"
             />
           </S.Fieldset>
           <S.Fieldset>
@@ -93,6 +94,7 @@ const SignUp = () => {
               placeholder="confirm password"
               id="confirmPw"
               name="confirmPw"
+              autocomplete="off"
             />
           </S.Fieldset>
           <S.FormErrorMessage>
