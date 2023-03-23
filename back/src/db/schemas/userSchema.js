@@ -3,15 +3,10 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema(
   {
     userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'groups',
+      type: 'String',
       required: true,
     },
-    nickName: {
-      type: String,
-      required: true,
-    },
-    email: {
+    nickname: {
       type: String,
       required: true,
     },

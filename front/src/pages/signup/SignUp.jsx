@@ -9,32 +9,35 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
-  const [errMsg, setErrMsg] = useState([]);
+  const [errMsg, setErrMsg] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
     const userData = {
-      userName: nickname,
-      userEmail: email,
-      userPassword: password,
+      nickName: nickname,
+      userId: email,
+      password: password,
     };
-    if (password !== confirmPw) {
-      setErrMsg(() => '비밀번호가 일치하지 않습니다.');
-      return;
-    }
-    if (nickname.length < 2) {
-      setErrMsg(() => '2글자 이상의 닉네임을 입력해주세요.');
-    }
     if (nickname.length === 0 || email.length === 0 || password.length === 0) {
       setErrMsg(() => '닉네임, 이메일, 비밀번호를 입력해 주세요.');
       return;
     }
+    if (nickname.length < 3) {
+      setErrMsg(() => '3글자 이상의 닉네임을 입력해주세요.');
+    }
+    if (password !== confirmPw) {
+      setErrMsg(() => '비밀번호가 일치하지 않습니다.');
+      return;
+    }
+    //확인용 (나중에 지우기)
+    console.log(userData);
     try {
       await axios.post(`http://localhost:5050/register`, { ...userData });
       alert('회원가입에 성공했습니다.');
       navigate('/login');
     } catch (err) {
       console.log(err);
+      alert('회원가입에 실패하였습니다. 다시 시도해주세요.');
     }
   };
 
@@ -47,10 +50,10 @@ const SignUp = () => {
             <input
               onChange={e => setNickname(e.target.value)}
               placeholder="nickname"
+              id="nickname"
               required
+              name="nickname"
               value={nickname}
-              id="name"
-              name="name"
               type="text"
               autocomplete="off"
             />
@@ -62,9 +65,9 @@ const SignUp = () => {
               onChange={e => setEmail(e.target.value)}
               required
               value={email}
-              id="email"
               type="email"
-              name="email"
+              id="userId"
+              name="userId"
               autocomplete="off"
             />
           </S.Fieldset>
@@ -74,10 +77,10 @@ const SignUp = () => {
               required
               onChange={e => setPassword(e.target.value)}
               value={password}
-              id="password"
               type="password"
-              name="password"
               placeholder="password"
+              name="password"
+              id="password"
             />
           </S.Fieldset>
           <S.Fieldset>
@@ -85,10 +88,11 @@ const SignUp = () => {
             <input
               required
               onChange={e => setConfirmPw(e.target.value)}
-              id="ConfirmPw"
+              value={confirmPw}
               type="password"
-              name="confirmPassword"
               placeholder="confirm password"
+              id="confirmPw"
+              name="confirmPw"
             />
           </S.Fieldset>
           <S.FormErrorMessage>

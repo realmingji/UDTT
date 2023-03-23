@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 const GroupSchema = new mongoose.Schema(
   {
-    groupId: {
-      type: String,
-      required: true,
-    },
     title: {
       type: String,
       required: true,
@@ -17,26 +13,34 @@ const GroupSchema = new mongoose.Schema(
     //모임 시작 시간
     startTime: {
       type: Date,
+      default: new Date(),
       required: true,
     },
     //모임 종료 시간
     endTime: {
       type: Date,
-      required: true,
+      required: false,
     },
     status: {
       type: String,
       enum: ['Open', 'Close'],
       default: 'Open',
     },
-    userID: {
+    leaderId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'users',
+      required: true,
+    },
+    memberId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+      required: false,
     },
     // 장소 추가필요(11개 spot)
-    spotId: {
+    spot: {
       type: String,
-      enum: ['', '', '', ''],
+      // enum: ['강서', '광나루', '난지', '뚝섬', '망원', '반포', '양화', '여의도', '이촌', '잠실', '잠원'],
+      required: true,
     },
   },
   {

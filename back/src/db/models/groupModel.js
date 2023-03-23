@@ -2,6 +2,7 @@ const { model } = require('mongoose');
 const { GroupSchema } = require('../schemas/groupSchema');
 
 const Group = model('groups', GroupSchema);
+
 class GroupModel {
   //모임 메인 페이지 조회
   // async findAll({

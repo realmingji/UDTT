@@ -5,8 +5,7 @@ const userRouter = require('./routes/userRouter');
 const groupRouter = require('./routes/groupRouter');
 const commentRouter = require('./routes/commentRouter');
 
-// const { errorHandler } = require('./middlewares/errorHandler');
-// const { loginRequired } = require('./middleware/loginRequired');
+const { loginRequired } = require('./middleware/loginRequired');
 
 const db = require('./db/db');
 
@@ -25,7 +24,7 @@ app.use('/api', commentRouter);
 
 // Error Handler
 // app.use(errorHandler);
-// app.use(loginRequired);
+app.use(loginRequired);
 
 app.get('/', (req, res) => {
   res.send('Hello, UDTT Started NodeJS Application');
