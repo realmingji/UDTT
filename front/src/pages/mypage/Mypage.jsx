@@ -14,6 +14,7 @@ export default function MyPage() {
   const [joinList, setJoinList] = useState([]);
   const [myClubList, setMyClubList] = useState([]);
   const [myCommentList, setMyCommentList] = useState([]);
+  const userId = JSON.parse(localStorage.getItem('userData'))._id;
 
   // [ 사용자정보가져오기 ]
   // useEffect(() => {
