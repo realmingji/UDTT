@@ -4,9 +4,14 @@ const { GroupSchema } = require('../schemas/groupSchema');
 const Group = model("groups", GroupSchema);
 
 class GroupModel {
-    async findByTitle(title) {
-        const group = await Group.findOne({ title });
-        return group;
+    async create(groupData) {
+        const createdNewGroup = await Group.create(groupData);
+        return createdNewGroup;
+    }
+
+    async findAll() {
+        const groups = await Group.find({});
+        return groups;
     }
 
     async findById(groupId) {
@@ -24,15 +29,11 @@ class GroupModel {
         return groups;
     }
 
-    async create(groupInfo) {
-        const createdNewGroup = await Group.create(groupInfo);
-        return createdNewGroup;
-    }
-
-    async findAll() {
-        const groups = await Group.find({});
+    async findByUser(_userId) {
+        const groups = await Group.findOne({ _userId });
         return groups;
     }
+    
 
     async update({ groupId, update }) {
         const filter = { _id: groupId };
@@ -57,3 +58,5 @@ module.exports = GroupModel;
 const groupModel = new GroupModel();
 
 module.exports = { groupModel };
+
+

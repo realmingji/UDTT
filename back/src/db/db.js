@@ -7,7 +7,7 @@ const db = () => {
   mongoose.set('strictQuery', true);
   mongoose
     .connect(process.env.MONGODB_URL)
-    .then(console.log('데이터베이스 연결되었습니다!!!!'))
+    .then(console.log('Database connection established'))
     .catch((err) => console.log(err));
 };
 

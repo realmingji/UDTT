@@ -1,22 +1,15 @@
-const { groupModel } = require('../db/models/groupModel');
+const { groupModel } = require('../db/models/groupModel2');
 
 class GroupService {
   constructor(groupModel) {
     this.groupModel = groupModel;
   }
   // 소모임 생성
-  async addgroup(groupConfig) {
-    // 객체 destructuring
-    const { title, info, startTime, endTime, status, userId, spotId } =
-      groupConfig;
+  async addGroup(groupData) {
     // db에 저장
-    const group = await this.groupModel.findByGroupConfig(groupConfig);
-    if (!groupConfig) {
-      throw new Error('모임 정보가 부족합니다. 빈 칸을 채워주세요.');
-    }
-    const createdNewGroup = await this.groupModel.create(groupConfig);
+    const createGroup = await this.groupModel.create(groupData);
 
-    return createdNewGroup;
+    return createGroup;
   }
 
   async getGroups() {
@@ -25,10 +18,27 @@ class GroupService {
     return groups;
   }
 
+  async getGroupData(groupId) {
+    const group = await this.groupModel.findById(groupId);
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!group) {
+      throw new Error("등록된 소모임이 없습니다.");
+    }
+
+    return group;
+  }
+
+
   async getGroupsByUserId(userId) {
     const groups = await this.groupModel.findAllByUserId(userId);
 
-    return groups;
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!groups) {
+      throw new Error("등록된 소모임이 없습니다.");
+    }
+
+    return group;
   }
 
   async setGroup(groupId, toUpdate) {
@@ -40,7 +50,7 @@ class GroupService {
     return updatedGroup;
   }
 
-  async deleteGrouptData(groupId) {
+  async deleteGroupt(groupId) {
     const deleteGroup = await this.groupModel.deleteById(groupId);
     return deleteGroup;
   }

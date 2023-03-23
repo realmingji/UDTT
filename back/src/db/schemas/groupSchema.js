@@ -10,21 +10,20 @@ const GroupSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    //모임 시작 시간
     startTime: {
       type: Date,
       default: new Date(),
       required: true,
     },
-    //모임 종료 시간
     endTime: {
       type: Date,
       required: false,
     },
     status: {
       type: String,
-      enum: ['Open', 'Close'],
-      default: 'Open',
+      // enum: ['Open', 'Close'],
+      default: 'OPEN',
+      required: true,
     },
     leaderId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -36,7 +35,6 @@ const GroupSchema = new mongoose.Schema(
       ref: 'users',
       required: false,
     },
-    // 장소 추가필요(11개 spot)
     spot: {
       type: String,
       // enum: ['강서', '광나루', '난지', '뚝섬', '망원', '반포', '양화', '여의도', '이촌', '잠실', '잠원'],
