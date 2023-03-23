@@ -15,7 +15,7 @@ const Login = () => {
       setErrMsg(() => '이메일과 비밀번호를 입력해 주세요.');
     } else {
       try {
-        const response = await axios.post(`http://localhost:5050/login`, {
+        const response = await axios.post(`http://localhost:5050/api/login`, {
           userId: email,
           password: password,
         });

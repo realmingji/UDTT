@@ -5,6 +5,11 @@ const { loginRequired } = require('../middleware/loginRequired');
 
 groupRouter.post('/groups', loginRequired, async (req, res, next) => {
   try {
+    if (is.object(req.body)) {
+      throw new Error(
+        "Empty object"
+      );
+    }
     // req (request) 에서 데이터 가져오기
     const { title, info, startTime, endTime, status, spot } = req.body;
 
@@ -26,6 +31,11 @@ groupRouter.post('/groups', loginRequired, async (req, res, next) => {
 
 groupRouter.get('/groups/:groupId', async function (req, res, next) {
   try {
+    if (is.object(req.body)) {
+      throw new Error(
+        "Empty object"
+      );
+    }
     const groupId = req.params.groupId;
     const groupData = await groupService.getGroupData(groupId);
 
@@ -38,6 +48,11 @@ groupRouter.get('/groups/:groupId', async function (req, res, next) {
 // 소모임 정보 수정
 groupRouter.patch('/groups/:groupId', loginRequired, async function (req, res, next) {
   try {
+    if (is.object(req.body)) {
+      throw new Error(
+        "Empty object"
+      );
+    }
     // params로부터 _id를 가져옴(mongoDB에서 자동 생성해주는 _id)
     const groupId = req.params.groupId;
 
@@ -76,6 +91,11 @@ groupRouter.patch('/groups/:groupId', loginRequired, async function (req, res, n
 //사용자 삭제
 groupRouter.delete('/groups/:groupId', loginRequired, async function (req, res, next) {
   try {
+    if (is.object(req.body)) {
+      throw new Error(
+        "Empty object"
+      );
+    }
     // params로부터 id를 가져옴
     const groupId = req.params.groupId;
     const deleteResult = await groupService.deleteGroupData(groupId);

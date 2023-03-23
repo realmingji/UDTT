@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { userModel } = require('../db/models/userModel');
+const dotenv = require('../db/models/dotenv');
+dotenv.config();
 
 class UserService {
     constructor(userModel) {
@@ -10,13 +12,13 @@ class UserService {
     async addUser(userInfo) {
         const { userId, nickname, password } = userInfo;
 
-        // // ID 중복 확인
-        // const user = await this.userModel.findByUserId(userId);
-        // if (user) {
-        //     throw new Error(
-        //     '이 이메일은 현재 사용중 입니다. 다른 이메일로 이용해 주세요.',
-        //     );
-        // }
+        // ID 중복 확인
+        const user = await this.userModel.findByUserId(userId);
+        if (user) {
+            throw new Error(
+            '이 이메일은 현재 사용중 입니다. 다른 이메일로 이용해 주세요.',
+            );
+        }
         // 비밀번호 해쉬화
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -33,7 +35,7 @@ class UserService {
         const { userId, password } = loginInfo;
 
         // userId db에 존재 여부 확인
-        const user = await this.userModel.findById(userId);
+        const user = await this.userModel.findById(newLoginInfo);
         if (!user) {
             throw new Error(
             '입력하신 정보는 확인 되지 않습니다. 다시 한 번 확인해 주세요.',
@@ -52,15 +54,14 @@ class UserService {
             '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.',
         );
     }
-
         // 로그인 성공 -> JWT 웹 토큰 생성
         const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
-        const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
+        const token = jwt.sign({ userId: user.userId }, secretKey);
 
         return { token };
     }
-    async findUserId(_userId) {
-        const foundedUserId = await this.userModel.findByUserId(_userId);
+    async findUserId(userId) {
+        const foundedUserId = await this.userModel.findByUserId(userId);
         if (!foundedUserId) {
         throw new Error('등록 되지 않은 정보 입니다.');
         }
