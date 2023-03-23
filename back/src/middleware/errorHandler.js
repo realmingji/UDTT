@@ -1,7 +1,8 @@
-// function errorHandler(error, req, res, next) {
-//   logger.error(error.stack);
 
-//   res.status(400).json({ reason: error.message });
-// }
+function errorHandler(error, req, res, next) {
+    logger.error(error.stack);
 
-// module.exports = { errorHandler };
+    res.status(400).json({ reason: error.message });
+}
+
+module.exports = { errorHandler };

@@ -2,41 +2,40 @@ const { model } = require('mongoose');
 const { UserSchema } = require('../schemas/userSchema');
 
 const User = model('users', UserSchema);
+
 class UserModel {
-  async findById(userId) {
-    const user = await User.findOne({ _id: userId });
-    return user;
-  }
+    async findById(_userId) {
+        const user = await User.findOne({ _userId });
+        return user;
+    }
 
-  async create(userInfo) {
-    const createdNewUser = await User.create(userInfo);
-    return createdNewUser;
-  }
+    async findByNickname(nickname) {
+        const user = await User.findOne({ nickname });
+        return user;
+    }
 
-  async update({ userId, update }) {
-    const filter = { _id: userId };
-    const option = { returnOriginal: false };
+    async findAll() {
+        const users = await User.find({});
+        return users;
+    }
 
-    const updatedUser = await User.findOneAndUpdate(filter, update, option);
-    return updatedUser;
-  }
+    async create(userInfo) {
+        const createdNewUser = await User.create(userInfo);
+        return createdNewUser;
+    }
 
-  async updatePW({ userId, newPasswordHash }) {
-    const filter = { _id: userId };
-    const option = { returnOriginal: false };
+    async update({ _userId, update }) {
+        const filter = { _userId };
+        const option = { returnOriginal: false };
 
-    const updatedUser = await User.findOneAndUpdate(
-      filter,
-      { password: newPasswordHash },
-      option,
-    );
-    return updatedUser;
-  }
+        const updatedUser = await User.findOneAndUpdate(filter, update, option);
+        return updatedUser;
+    }
 
-  async deleteById(userId) {
-    const result = await User.deleteOne({ _id: userId });
-    return result;
-  }
+    async deleteById(_userId) {
+        const result = await User.deleteOne({ _userId });
+        return result;
+    }
 }
 
 module.exports = UserModel;
