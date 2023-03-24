@@ -1,24 +1,15 @@
 const express = require('express');
 const groupRouter = express.Router();
-// const { userService } = require('../services/userService');
 const { groupService } = require('../services/groupService');
 const { loginRequired } = require('../middleware/loginRequired');
 
 // 소모임 생성, 가입 유저 가능
 groupRouter.post('/groups/new', loginRequired, async (req, res, next) => {
   try {
-    // if (is.emptyObject(req.body)) {
-    //   throw new Error(
-    //     "Empty object, headers Content-Type: application/json"
-    //   );
-    // }
-    // req (request) 에서 데이터 가져오기
+
     const { title, info, startTime, endTime, status, spot } = req.body;
     const leaderId = req.currentUserId;
     console.log(`-----currendId: ${leaderId}-----`);
-    // const leaderObjectId = await userService.findUserId(leaderId);
-
-    // const memberId = req.currentUserId;
 
     // 위 데이터를 소모임 db에 추가하기
     const newGroup = await groupService.addGroup({
@@ -75,13 +66,8 @@ groupRouter.get('/groups/:groupId', async (req, res, next) => {
 // 소모임 정보 수정, 생성한 leader 유저 가능
 groupRouter.patch('/groups/:groupId', loginRequired, async (req, res, next) => {
   try {
-    // if (is.emptyObject(req.body)) {
-    //   throw new Error(
-    //     "Empty object, headers Content-Type: application/json"
-    //   );
-    // }
-    // params로부터 _id를 가져옴(mongoDB에서 자동 생성해주는 _id)
-    const groupId = req.params.leaderId;
+
+    const groupId = req.params.groupId;
 
     // req(request) 에서 body data 로부터 업데이트할 정보를 추출함.
     const title = req.body.title;

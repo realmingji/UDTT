@@ -15,7 +15,7 @@ class GroupModel {
   }
 
   async findById(groupId) {
-    const group = await Group.findOne({ _id: groupId });
+    const group = await Group.findOne(groupId );
     return group;
   }
 
@@ -31,13 +31,13 @@ class GroupModel {
   //   return groups;
   // }
 
-  async findByUser(_userId) {
-    const groups = await Group.findOne({ _userId });
+  async findByUser(userId) {
+    const groups = await Group.findOne({ userId });
     return groups;
   }
 
   async update({ groupId, update }) {
-    const filter = { _id: groupId };
+    const filter = { id: groupId };
     const option = { returnOriginal: false };
 
     const updatedGroup = await Group.findOneAndUpdate(filter, update, option);
@@ -45,7 +45,7 @@ class GroupModel {
   }
 
   async deleteById(groupId) {
-    const result = await Group.deleteOne({ _id: groupId });
+    const result = await Group.deleteOne({ id: groupId });
     return result;
   }
 }

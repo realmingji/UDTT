@@ -11,10 +11,10 @@ class UserService {
   }
   // 일반 회원가입
   async addUser(userInfo) {
-    const { userId, nickname, password } = userInfo;
+    const { email, nickname, password } = userInfo;
 
     // ID 중복 확인
-    const user = await this.userModel.findById(userId);
+    const user = await this.userModel.findByEmail(email);
     if (user) {
       throw new Error(
         '이 이메일은 현재 사용중 입니다. 다른 이메일로 이용해 주세요.',
@@ -23,7 +23,7 @@ class UserService {
     // 비밀번호 해쉬화
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUserInfo = { userId, nickname, password: hashedPassword };
+    const newUserInfo = { email, nickname, password: hashedPassword };
 
     // db에 저장
     const createdNewUser = await this.userModel.create(newUserInfo);
@@ -33,10 +33,10 @@ class UserService {
 
   // 일반 로그인
   async getUserToken(loginInfo) {
-    const { userId, password } = loginInfo;
+    const { email, password } = loginInfo;
 
-    // userId db에 존재 여부 확인
-    const user = await this.userModel.findById(userId);
+    // userEmail db에 존재 여부 확인
+    const user = await this.userModel.findByEmail(userEmail);
     if (!user) {
       throw new Error(
         '입력하신 정보는 확인 되지 않습니다. 다시 한 번 확인해 주세요.',
@@ -72,7 +72,7 @@ class UserService {
 
   // 정보 수정, 삭제 관련 재확인시 현재 비밀번호 요청
   async checkUserPassword(userId, password) {
-    // 이메일 db에 존재 여부 확인
+    // userId db에 존재 여부 확인
     const user = await this.userModel.findById(userId);
 
     // 비밀번호 일치 여부 확인
@@ -92,8 +92,8 @@ class UserService {
   }
 
   //사용자 정보 가져오기
-  async getUserData(_userId) {
-    const user = await this.userModel.findById(_userId);
+  async getUserData(userId) {
+    const user = await this.userModel.findById(userId);
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
@@ -175,7 +175,7 @@ class UserService {
 
     // 삭제에 실패한 경우, 에러 메시지 반환
     if (deletedCount === 0) {
-      throw new Error(`${userId} 사용자 데이터의 삭제에 실패하였습니다.`);
+      throw new Error(`${userEmail} 사용자 데이터의 삭제에 실패하였습니다.`);
     }
 
     return { result: 'success' };

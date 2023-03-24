@@ -9,8 +9,8 @@ class UserModel {
     return user;
   }
 
-  async findByNickname(nickname) {
-    const user = await User.findOne({ nickname });
+  async findByEmail(email) {
+    const user = await User.findOne({ email });
     return user;
   }
 
@@ -24,16 +24,16 @@ class UserModel {
     return createdNewUser;
   }
 
-  async update({ _userId, update }) {
-    const filter = { _userId };
+  async update({ userId, update }) {
+    const filter = { userId };
     const option = { returnOriginal: false };
 
     const updatedUser = await User.findOneAndUpdate(filter, update, option);
     return updatedUser;
   }
 
-  async deleteById(_userId) {
-    const result = await User.deleteOne({ _userId });
+  async deleteById(userId) {
+    const result = await User.deleteOne({ userId });
     return result;
   }
 }

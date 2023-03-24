@@ -5,7 +5,7 @@ const Comment = model("comments", CommentSchema);
 
 class CommentModel {
     async findById(commentId) {
-        const comment = await Comment.findOne({ _id: commentId });
+        const comment = await Comment.findOne({ id: commentId });
         return comment;
     }
 
@@ -14,13 +14,13 @@ class CommentModel {
         return comments;
     }
 
-    async findAllByUserId(_userId) {
-        const comments = await Comments.find({ _userId });
+    async findAllByUserId(userId) {
+        const comments = await Comment.find(userId);
         return comments;
     }
 
-    async findAllByGroupId(_groupId) {
-        const comments = await Comment.find({ _groupId });
+    async findAllByGroupId(groupId) {
+        const comments = await Comment.find(groupId );
         return comments;
     }
 

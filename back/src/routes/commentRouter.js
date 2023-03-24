@@ -2,16 +2,12 @@ const express = require('express');
 const commentRouter = express.Router();
 const { loginRequired } = require('../middleware/loginRequired');
 const { commentService } = require('../services/commentService');
-const { groupService } = require('../services/groupService');
+// const { groupService } = require('../services/groupService');
 
 // 코멘트 작성
 commentRouter.post('/comments', loginRequired, async (req, res, next) => {
   try {
-    // if (is.emptyObject(req.body)) {
-    //   throw new Error(
-    //     "Empty object, headers Content-Type: application/json"
-    //   );
-    // }
+
     const { content } = req.body;
 
     // 위 데이터를 comment db에 추가하기
@@ -24,17 +20,17 @@ commentRouter.post('/comments', loginRequired, async (req, res, next) => {
   }
 });
 
-// 댓글 전체 목록 조회
-commentRouter.get('/comments', async function (req, res, next) {
-  try {
-    const commentId = req.params.commentId;
-    const commentData = await commentService.getComments(commentId);
+// // 댓글 전체 목록 조회
+// commentRouter.get('/comments', async function (req, res, next) {
+//   try {
+//     const commentId = req.params.commentId;
+//     const commentData = await commentService.getComments(commentId);
 
-    res.status(200).json(commentData);
-  } catch (error) {
-    next(error);
-  }
-});
+//     res.status(200).json(commentData);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 // 특정 소모임의 댓글 목록 조회
 commentRouter.get('/groups/:groupId', async function (req, res, next) {
@@ -70,11 +66,7 @@ commentRouter.patch(
   loginRequired,
   async function (req, res, next) {
     try {
-      if (is.emptyObject(req.body)) {
-        throw new Error('Empty object, headers Content-Type: application/json');
-      }
 
-      // req (request) 에서 데이터 가져오기
       const commentId = req.params.commentId;
       const content = req.body.content;
 

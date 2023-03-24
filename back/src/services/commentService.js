@@ -4,7 +4,7 @@ const { groupModel } = require('../db/models/groupModel2');
 class CommentService {
   constructor(commentModel, groupModel) {
     this.commentModel = commentModel;
-    // this.groupModel = groupModel;
+    this.groupModel = groupModel;
   }
 
   async addComment(commentInfo) {
@@ -27,8 +27,8 @@ class CommentService {
     return comments;
   }
 
-  async getCommentsByUserId(_userId) {
-    const comments = await this.commentModel.findAllByUserId(_userId);
+  async getCommentsByUserId(userId) {
+    const comments = await this.commentModel.findAllByUserId(userId);
 
     return comments;
   }

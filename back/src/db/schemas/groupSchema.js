@@ -13,7 +13,7 @@ const GroupSchema = new mongoose.Schema(
     startTime: {
       type: Date,
       default: new Date(),
-      required: true,
+      required: false,
     },
     endTime: {
       type: Date,
@@ -27,7 +27,7 @@ const GroupSchema = new mongoose.Schema(
     },
     // leaderId type : mongoose.Schema.Types.ObjectId 수정 필요 -> 수정중
     leaderId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'users',
       required: true,
     },
