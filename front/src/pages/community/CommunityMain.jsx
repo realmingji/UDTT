@@ -12,6 +12,7 @@ import {
 
 const CommunityMain = () => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     axios.get(`http://localhost:5050/api/groups`).then(res => {
       setData(res.data);
@@ -22,7 +23,7 @@ const CommunityMain = () => {
     <div style={{ paddingBottom: '80px', overflowX: 'hidden' }}>
       <Map />
       {data.map((data, index) => (
-        <Link to={`/users/groups/${data._id}`}>
+        <Link key={data._id} to={`/users/groups/${data._id}`}>
           <S.BoardBox>
             <h1>
               <span>모집 중</span> {data.title}

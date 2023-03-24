@@ -7,21 +7,25 @@ import axios from 'axios';
 
 const CommunityWrite = () => {
   const [title, setTitle] = useState('');
-  const [startDate, setstartDate] = useState(new Date());
-  const [startTime, setStartTime] = useState(new Date());
   const [spot, setSpot] = useState('');
   const [info, setInfo] = useState('');
 
   const handleSubmit = async () => {
     try {
-      await axios.post('http://localhost:5050/api/groups/new', {
-        title,
-        startDate,
-        startTime,
-        spot,
-        info,
-      });
-      console.log('Data is successfully submitted');
+      const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰 가져오기
+      await axios.post(
+        'http://localhost:5050/api/groups/new',
+        {
+          title,
+          spot,
+          info,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // 토큰을 Authorization 헤더에 추가
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -33,22 +37,6 @@ const CommunityWrite = () => {
         placeholder="제목"
         value={title}
         onChange={e => setTitle(e.target.value)}
-      />
-      <S.SelectDate
-        locale={ko}
-        dateFormat="MM월dd일"
-        selected={startTime}
-        onChange={date => setstartDate(date)}
-      />
-      <S.SelectDate
-        locale={ko}
-        selected={startTime}
-        onChange={date => setStartTime(date)}
-        showTimeSelect
-        showTimeSelectOnly
-        timeIntervals={15}
-        timeCaption="Time"
-        dateFormat="h:mm aa"
       />
       <S.Input
         placeholder="장소"
