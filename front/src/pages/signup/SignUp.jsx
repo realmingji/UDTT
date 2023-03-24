@@ -64,8 +64,8 @@ const SignUp = () => {
               required
               value={email}
               type="email"
-              id="userId"
-              name="userId"
+              id="email"
+              name="email"
               autocomplete="off"
             />
           </S.Fieldset>
