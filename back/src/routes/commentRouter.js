@@ -2,59 +2,56 @@ const express = require('express');
 const commentRouter = express.Router();
 const { loginRequired } = require('../middleware/loginRequired');
 const { commentService } = require('../services/commentService');
+const { groupService } = require('../services/groupService');
 
 // 코멘트 작성
-commentRouter.post('/comments', loginRequired, 
-  async (req, res, next) => {
-    try {
-      if (is.emptyObject(req.body)) {
-        throw new Error(
-          "Empty object, headers Content-Type: application/json"
-        );
-      }
+commentRouter.post('/comments', loginRequired, async (req, res, next) => {
+  try {
+    // if (is.emptyObject(req.body)) {
+    //   throw new Error(
+    //     "Empty object, headers Content-Type: application/json"
+    //   );
+    // }
+    const { content } = req.body;
 
-      const { content } = req.body;
-
-      // 위 데이터를 comment db에 추가하기
-      const newComment = await commentService.addComment({
-        content,
-      });
-      res.status(201).json(newComment);
-    } catch (error) {
-      next(error);
-    }
+    // 위 데이터를 comment db에 추가하기
+    const newComment = await commentService.addComment({
+      content,
+    });
+    res.status(201).json(newComment);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // 댓글 전체 목록 조회
-commentRouter.get("/comments",
-  async function (req, res, next) {
-    try {
-      const commentId = req.params.commentId;
-      const commentData = await commentService.getComments(commentId);
+commentRouter.get('/comments', async function (req, res, next) {
+  try {
+    const commentId = req.params.commentId;
+    const commentData = await commentService.getComments(commentId);
 
-      res.status(200).json(commentData);
-    } catch (error) {
-      next(error);
-    }
+    res.status(200).json(commentData);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 // 특정 소모임의 댓글 목록 조회
-commentRouter.get("/groups/:groupId",
-  async function (req, res, next) {
-    try {
-      const groupId = req.params.groupId;
-      const comments = await commentService.getCommentsByGroupId(groupId);
+commentRouter.get('/groups/:groupId', async function (req, res, next) {
+  try {
+    const groupId = req.params.groupId;
+    const comments = await commentService.getCommentsByGroupId(groupId);
 
-      res.status(200).json(comments);
-    } catch (error) {
-      next(error);
-    }
+    res.status(200).json(comments);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 // 특정 유저의 댓글 목록 조회
-commentRouter.get("/users/:userId", loginRequired,
+commentRouter.get(
+  '/users/:userId',
+  loginRequired,
   async function (req, res, next) {
     try {
       const userId = req.params.userId;
@@ -64,17 +61,17 @@ commentRouter.get("/users/:userId", loginRequired,
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
 // 댓글 수정
-commentRouter.patch("/comments/commentId", loginRequired,
+commentRouter.patch(
+  '/comments/commentId',
+  loginRequired,
   async function (req, res, next) {
     try {
       if (is.emptyObject(req.body)) {
-        throw new Error(
-          "Empty object, headers Content-Type: application/json"
-        );
+        throw new Error('Empty object, headers Content-Type: application/json');
       }
 
       // req (request) 에서 데이터 가져오기
@@ -88,20 +85,19 @@ commentRouter.patch("/comments/commentId", loginRequired,
       };
 
       // 제품 정보를 업데이트함.
-      const updatedComment = await commentService.setItem(
-        commentId,
-        toUpdate
-      );
+      const updatedComment = await commentService.setItem(commentId, toUpdate);
 
       res.status(200).json(updatedComment);
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
 // 댓글 삭제
-commentRouter.delete("/comments/:commentId", loginRequired,
+commentRouter.delete(
+  '/comments/:commentId',
+  loginRequired,
   async function (req, res, next) {
     try {
       const commentId = req.params.commentId;
@@ -111,8 +107,7 @@ commentRouter.delete("/comments/:commentId", loginRequired,
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
-
 
 module.exports = commentRouter;
