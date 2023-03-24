@@ -18,7 +18,7 @@ export default function MyPage() {
 
   const token = localStorage.getItem('token');
   const decoded = jwt_decode(token);
-  const userId = decoded.userId;
+  const userId = decoded._id;
 
   // [사용자정보가져오기];
   useEffect(() => {
