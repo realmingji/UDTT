@@ -15,19 +15,24 @@ export default function MyPage() {
   const [joinList, setJoinList] = useState([]);
   const [myClubList, setMyClubList] = useState([]);
   const [myCommentList, setMyCommentList] = useState([]);
-  // const userId = JSON.parse(localStorage.getItem('token'));
+
   const token = localStorage.getItem('token');
   const decoded = jwt_decode(token);
   const userId = decoded.userId;
 
   // [사용자정보가져오기];
   useEffect(() => {
-    axios.get(`http://localhost:5050/users/${userId}`).then(res => {
-      setCustomerInfo(res.data);
-      setJoinList(res.data.join_list);
-      setMyClubList(res.data.my_group_list);
-      setMyCommentList(res.data.comment_list);
-    });
+    axios
+      .get(`http://localhost:5050/api/users/${userId}`, {
+        headers: { authorization: `bearer ${token}` },
+      })
+      .then(res => {
+        console.log(res);
+        setCustomerInfo(res.data);
+        setJoinList(res.data.join_list);
+        setMyClubList(res.data.my_group_list);
+        setMyCommentList(res.data.comment_list);
+      });
   }, []);
 
   // [닉네임변경];

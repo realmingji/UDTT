@@ -5,8 +5,8 @@ const { kakao } = window;
 
 export default function Map() {
   useEffect(() => {
-    mapscript();
-  }, []);
+    if (kakao) mapscript();
+  }, [kakao]);
 
   const mapscript = () => {
     let container = document.getElementById('map');
