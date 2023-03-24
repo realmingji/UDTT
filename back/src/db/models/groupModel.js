@@ -1,3 +1,5 @@
+// ----- groupModel2 사용 / 삭제 예정 -----
+
 // const { model } = require('mongoose');
 // const { GroupSchema } = require('../schemas/groupSchema');
 

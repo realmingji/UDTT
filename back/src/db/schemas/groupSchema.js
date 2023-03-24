@@ -25,6 +25,7 @@ const GroupSchema = new mongoose.Schema(
       default: 'OPEN',
       required: true,
     },
+    // leaderId type : mongoose.Schema.Types.ObjectId 수정 필요 -> 수정중
     leaderId: {
       type: String,
       ref: 'users',

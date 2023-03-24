@@ -61,6 +61,7 @@ class UserService {
 
     return { token };
   }
+
   async findUserId(userId) {
     const foundedUserId = await this.userModel.findByUserId(userId);
     if (!foundedUserId) {

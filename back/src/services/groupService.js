@@ -18,11 +18,12 @@ class GroupService {
     return groups;
   }
 
-  async getGroupsBySpot(spotId) {
-    const groups = await this.groupModel.findBySpot(spotId);
+  // ----- spot 제외 -----
+  // async getGroupsBySpot(spotId) {
+  //   const groups = await this.groupModel.findBySpot(spotId);
 
-    return groups;
-  }
+  //   return groups;
+  // }
 
   async getGroupInfo(groupId) {
     const group = await this.groupModel.findById(groupId);

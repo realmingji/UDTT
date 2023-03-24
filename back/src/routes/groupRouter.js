@@ -1,6 +1,6 @@
 const express = require('express');
 const groupRouter = express.Router();
-const { userService } = require('../services/userService');
+// const { userService } = require('../services/userService');
 const { groupService } = require('../services/groupService');
 const { loginRequired } = require('../middleware/loginRequired');
 
@@ -15,6 +15,9 @@ groupRouter.post('/groups/new', loginRequired, async (req, res, next) => {
     // req (request) 에서 데이터 가져오기
     const { title, info, startTime, endTime, status, spot } = req.body;
     const leaderId = req.currentUserId;
+    console.log(`-----currendId: ${leaderId}-----`);
+    // const leaderObjectId = await userService.findUserId(leaderId);
+
     // const memberId = req.currentUserId;
 
     // 위 데이터를 소모임 db에 추가하기
@@ -45,17 +48,17 @@ groupRouter.get('/groups', async (req, res, next) => {
   }
 });
 
-// 소모임 spot별 페이지
-groupRouter.get('/groups/:spotId', async (req, res, next) => {
-  try {
-    const _spotId = req.params.spotId;
-    const groupBySpot = await groupService.getGroupsBySpot(_spotId);
+// // 소모임 spot별 페이지
+// groupRouter.get('/groups/:spotId', async (req, res, next) => {
+//   try {
+//     const _spotId = req.params.spotId;
+//     const groupBySpot = await groupService.getGroupsBySpot(_spotId);
 
-    res.status(200).json(groupBySpot);
-  } catch (error) {
-    next(error);
-  }
-});
+//     res.status(200).json(groupBySpot);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 // 그룹 상세보기, 일반 guests 가능
 groupRouter.get('/groups/:groupId', async (req, res, next) => {
@@ -68,18 +71,6 @@ groupRouter.get('/groups/:groupId', async (req, res, next) => {
     next(error);
   }
 });
-
-// // userId로 소모임 조회 기능 추가
-// groupRouter.get('/users/:userId', loginRequired, async (req, res, next) => {
-//   try {
-//   const userId = req.params.userId;
-//   const groupByUser = await groupService.getGroupsByUser(userId);
-
-//     res.status(200).json(groupByUser);
-//   } catch (error) {
-//     next(error);
-//   }
-// })
 
 // 소모임 정보 수정, 생성한 leader 유저 가능
 groupRouter.patch('/groups/:groupId', loginRequired, async (req, res, next) => {

@@ -18,16 +18,18 @@ class GroupModel {
     const group = await Group.findOne({ _id: groupId });
     return group;
   }
+
+  // ----- spot 제외 -----
   // // spotId 필요시 schema 구성 (spot->place)
   // async findOneBySpot(spot) {
   //   const group = await Group.findOne({ spot });
   //   return group;
   // }
 
-  async findBySpot(spot) {
-    const groups = await Group.find({ spot });
-    return groups;
-  }
+  // async findBySpot(spot) {
+  //   const groups = await Group.find({ spot });
+  //   return groups;
+  // }
 
   async findByUser(_userId) {
     const groups = await Group.findOne({ _userId });
