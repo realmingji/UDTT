@@ -10,16 +10,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 // http://localhost:5050/groups
 const CommunityMain = () => {
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   axios.get(`http://localhost:5050/groups`).then(res => {
-  //     setData(res.data);
-  //   });
-  // }, []);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get(`http://localhost:5050/api/groups`).then(res => {
+      setData(res.data);
+    });
+  }, []);
 
   return (
-    <div>
-      {/* <FontAwesomeIcon icon="fa-solid fa-paper-plane-top" /> */}
+    <div style={{ paddingBottom: '80px', overflowX: 'hidden' }}>
       <Map />
       <Link to={'/users/groups/:groupId'}>
         <S.BoardBox>
@@ -35,6 +34,24 @@ const CommunityMain = () => {
           </S.Bottom>
         </S.BoardBox>
       </Link>
+
+      {data.map((data, index) => (
+        <Link to={`/users/groups/${index}`}>
+          <S.BoardBox>
+            <h1>
+              <span>모집 중</span> {data.title}
+            </h1>
+            <S.Bottom>
+              <h2>{data.startTime}</h2>
+              <S.Comment>
+                <S.CommentIcon />
+                <h2>2</h2>
+              </S.Comment>
+            </S.Bottom>
+          </S.BoardBox>
+        </Link>
+      ))}
+
       <Link to={'/users/groups/new'}>
         <S.AddBtn>
           <FontAwesomeIcon icon={faCirclePlus} />
