@@ -1,45 +1,30 @@
 const express = require('express');
 require('express-async-errors');
 const userRouter = express.Router();
-// const is = require('@sindresorhus/is');
 
 const { loginRequired } = require('../middleware/loginRequired');
 const { userService } = require('../services/userService');
 
-
 //회원가입
-userRouter.post('/register', 
-  async (req, res, next) => {
-    try {
-      if (is.emptyObject(req.body)) {
-        throw new Error(
-          "Empty object, headers Content-Type: application/json"
-        );
-      }
-      const { userId, nickname, password } = req.body;
+userRouter.post('/register', async (req, res, next) => {
+  try {
+    const { userId, nickname, password } = req.body;
 
-      // 위 데이터를 유저 db에 추가하기
-      const newUser = await userService.addUser({
-        userId,
-        nickname,
-        password,
-      });
-      res.status(201).json(newUser);
-    } catch (error) {
-      next(error);
-    }
+    // 위 데이터를 유저 db에 추가하기
+    const newUser = await userService.addUser({
+      userId,
+      nickname,
+      password,
+    });
+    res.status(201).json(newUser);
+  } catch (error) {
+    next(error);
+  }
 });
 
 //로그인
-userRouter.post('/login', 
-  async (req, res, next) => {
-    try {
-      if (is.emptyObject(req.body)) {
-        throw new Error(
-          "Empty object, headers Content-Type: application/json"
-        );
-      }
-
+userRouter.post('/login', async (req, res, next) => {
+  try {
     // req (request) 에서 데이터 가져오기
     const { userId, password } = req.body;
     // 위 데이터가 db에 있는지 확인하고,
@@ -53,14 +38,11 @@ userRouter.post('/login',
 });
 
 // 로그인한 사용자 정보 불러오기
-userRouter.get('/users/:userId', loginRequired, 
+userRouter.get(
+  '/users/:userId',
+  loginRequired,
   async function (req, res, next) {
     try {
-      if (is.object(req.body)) {
-        throw new Error(
-          "Empty object"
-        );
-      }
       const _userId = req.currentUserId;
       const currentUserInfo = await userService.getUserData(_userId);
 
@@ -68,17 +50,15 @@ userRouter.get('/users/:userId', loginRequired,
     } catch (error) {
       next(error);
     }
-});
+  },
+);
 
 // 사용자 정보 수정
-userRouter.patch('/users/:userId', loginRequired, 
+userRouter.patch(
+  '/users/:userId',
+  loginRequired,
   async function (req, res, next) {
     try {
-      if (is.emptyObject(req.body)) {
-        throw new Error(
-          "Empty object, headers Content-Type: application/json"
-        );
-      }
       // params로부터 _id를 가져옴(mongoDB에서 자동 생성해주는 _id)
       const { _userId } = req.params;
 
@@ -99,22 +79,25 @@ userRouter.patch('/users/:userId', loginRequired,
       const toUpdate = {
         ...(nickname && { nickname }),
         ...(password && { password }),
-    };
+      };
 
       // 사용자 정보를 업데이트함.
       const updatedUserInfo = await userService.setUser(
-          userInfoRequired,
-          toUpdate,
+        userInfoRequired,
+        toUpdate,
       );
 
       res.status(200).json(updatedUserInfo);
     } catch (error) {
       next(error);
     }
-});
+  },
+);
 
 //사용자 삭제
-userRouter.delete('/users/:userId', loginRequired, 
+userRouter.delete(
+  '/users/:userId',
+  loginRequired,
   async function (req, res, next) {
     try {
       // params로부터 id를 가져옴
@@ -126,8 +109,7 @@ userRouter.delete('/users/:userId', loginRequired,
     } catch (error) {
       next(error);
     }
-  }
-);   
-
+  },
+);
 
 module.exports = userRouter;
