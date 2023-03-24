@@ -16,7 +16,7 @@ const Login = () => {
     } else {
       try {
         const response = await axios.post(`http://localhost:5050/api/login`, {
-          userId: email,
+          email: email,
           password: password,
         });
         //localStorage에 token값 저장

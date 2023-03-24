@@ -15,7 +15,7 @@ const SignUp = () => {
     e.preventDefault();
     const userData = {
       nickname: nickname,
-      userId: email,
+      email: email,
       password: password,
     };
     if (nickname.length === 0 || email.length === 0 || password.length === 0) {
