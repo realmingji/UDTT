@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './StyledCommunity';
 import { Link } from 'react-router-dom';
-
+import Map from './Map';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCirclePlus,
+  faPaperPlaneTop,
+} from '@fortawesome/free-solid-svg-icons';
+// http://localhost:5050/groups
 const CommunityMain = () => {
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   axios.get(`http://localhost:5050/groups`).then(res => {
+  //     setData(res.data);
+  //   });
+  // }, []);
+
   return (
     <div>
+      {/* <FontAwesomeIcon icon="fa-solid fa-paper-plane-top" /> */}
+      <Map />
       <Link to={'/users/groups/:groupId'}>
         <S.BoardBox>
           <h1>
@@ -20,7 +36,9 @@ const CommunityMain = () => {
         </S.BoardBox>
       </Link>
       <Link to={'/users/groups/new'}>
-        <S.AddBtn />
+        <S.AddBtn>
+          <FontAwesomeIcon icon={faCirclePlus} />
+        </S.AddBtn>
       </Link>
     </div>
   );
