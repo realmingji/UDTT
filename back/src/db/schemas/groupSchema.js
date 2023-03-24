@@ -26,7 +26,7 @@ const GroupSchema = new mongoose.Schema(
       required: true,
     },
     leaderId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: 'users',
       required: true,
     },

@@ -18,27 +18,32 @@ class GroupService {
     return groups;
   }
 
-  async getGroupData(groupId) {
+  async getGroupsBySpot(spotId) {
+    const groups = await this.groupModel.findBySpot(spotId);
+
+    return groups;
+  }
+
+  async getGroupInfo(groupId) {
     const group = await this.groupModel.findById(groupId);
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!group) {
-      throw new Error("등록된 소모임이 없습니다.");
+      throw new Error('등록된 소모임이 없습니다.');
     }
 
     return group;
   }
 
-
-  async getGroupsByUserId(userId) {
-    const groups = await this.groupModel.findAllByUserId(userId);
+  async getGroupsByUser(userId) {
+    const groups = await this.groupModel.findByUser(userId);
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!groups) {
-      throw new Error("등록된 소모임이 없습니다.");
+      throw new Error('등록된 소모임이 없습니다.');
     }
 
-    return group;
+    return groups;
   }
 
   async setGroup(groupId, toUpdate) {
@@ -50,7 +55,7 @@ class GroupService {
     return updatedGroup;
   }
 
-  async deleteGroupt(groupId) {
+  async deleteGroup(groupId) {
     const deleteGroup = await this.groupModel.deleteById(groupId);
     return deleteGroup;
   }

@@ -1,20 +1,21 @@
 const express = require('express');
 const groupRouter = express.Router();
+const { userService } = require('../services/userService');
 const { groupService } = require('../services/groupService');
 const { loginRequired } = require('../middleware/loginRequired');
 
 // 소모임 생성, 가입 유저 가능
-groupRouter.post('/groups', loginRequired, async (req, res, next) => {
+groupRouter.post('/groups/new', loginRequired, async (req, res, next) => {
   try {
-    if (is.emptyObject(req.body)) {
-      throw new Error(
-        "Empty object, headers Content-Type: application/json"
-      );
-    }
+    // if (is.emptyObject(req.body)) {
+    //   throw new Error(
+    //     "Empty object, headers Content-Type: application/json"
+    //   );
+    // }
     // req (request) 에서 데이터 가져오기
     const { title, info, startTime, endTime, status, spot } = req.body;
     const leaderId = req.currentUserId;
-    const memberId = req.currentUserId;
+    // const memberId = req.currentUserId;
 
     // 위 데이터를 소모임 db에 추가하기
     const newGroup = await groupService.addGroup({
@@ -24,7 +25,6 @@ groupRouter.post('/groups', loginRequired, async (req, res, next) => {
       endTime,
       status,
       leaderId,
-      memberId,
       spot,
     });
 
@@ -35,53 +35,60 @@ groupRouter.post('/groups', loginRequired, async (req, res, next) => {
 });
 
 // 소모임 전체 메인 페이지
-groupRouter.get('/groups',
-  async function (req, res, next) {
-    try {
-      const groups = await groupService.getGroups();
-
-      res.status(200).json(groups);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
-// 소모임 spot별 페이지
-groupRouter.get('/groups/:spotId',
-  async function (req, res, next) {
-    try {
-      const _spotId = req.params.spotId;
-      const spotGroups = await productService.getSpotGroups(_spotId);
-
-      res.status(200).json(spotGroups);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
-// 그룹 상세보기, 일반 guests 가능
-groupRouter.get('/groups/:groupId', async function (req, res, next) {
+groupRouter.get('/groups', async (req, res, next) => {
   try {
-    
-    const groupId = req.params.groupId;
-    const groupData = await groupService.getGroupData(groupId);
+    const groups = await groupService.getGroups();
 
-    res.status(200).json(groupData);
+    res.status(200).json(groups);
   } catch (error) {
     next(error);
   }
 });
 
-// 소모임 정보 수정, 생성한 leader 유저 가능
-groupRouter.patch('/groups/:groupId', loginRequired, async function (req, res, next) {
+// 소모임 spot별 페이지
+groupRouter.get('/groups/:spotId', async (req, res, next) => {
   try {
-    if (is.emptyObject(req.body)) {
-      throw new Error(
-        "Empty object, headers Content-Type: application/json"
-      );
-    }
+    const _spotId = req.params.spotId;
+    const groupBySpot = await groupService.getGroupsBySpot(_spotId);
+
+    res.status(200).json(groupBySpot);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// 그룹 상세보기, 일반 guests 가능
+groupRouter.get('/groups/:groupId', async (req, res, next) => {
+  try {
+    const groupId = req.params.groupId;
+    const groupInfo = await groupService.getGroupInfo(groupId);
+
+    res.status(200).json(groupInfo);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// // userId로 소모임 조회 기능 추가
+// groupRouter.get('/users/:userId', loginRequired, async (req, res, next) => {
+//   try {
+//   const userId = req.params.userId;
+//   const groupByUser = await groupService.getGroupsByUser(userId);
+
+//     res.status(200).json(groupByUser);
+//   } catch (error) {
+//     next(error);
+//   }
+// })
+
+// 소모임 정보 수정, 생성한 leader 유저 가능
+groupRouter.patch('/groups/:groupId', loginRequired, async (req, res, next) => {
+  try {
+    // if (is.emptyObject(req.body)) {
+    //   throw new Error(
+    //     "Empty object, headers Content-Type: application/json"
+    //   );
+    // }
     // params로부터 _id를 가져옴(mongoDB에서 자동 생성해주는 _id)
     const groupId = req.params.leaderId;
 
@@ -108,10 +115,7 @@ groupRouter.patch('/groups/:groupId', loginRequired, async function (req, res, n
     };
 
     // 그룹 정보를 업데이트함.
-    const updatedGroup = await groupService.setGroup(
-      groupId,
-      toUpdate,
-    );
+    const updatedGroup = await groupService.setGroup(groupId, toUpdate);
 
     res.status(200).json(updatedGroup);
   } catch (error) {
@@ -120,21 +124,20 @@ groupRouter.patch('/groups/:groupId', loginRequired, async function (req, res, n
 });
 
 // 소모임 생성자, 소모임 삭제
-groupRouter.delete('/groups/:groupId', loginRequired, 
-  async function (req, res, next) {
+groupRouter.delete(
+  '/groups/:groupId',
+  loginRequired,
+  async (req, res, next) => {
     try {
       // params로부터 id를 가져옴
       const groupId = req.params.groupId;
-      const deleteResult = await groupService.deleteGroupData(groupId);
+      const deleteResult = await groupService.deleteGroup(groupId);
 
       res.status(200).json(deleteResult);
     } catch (error) {
       next(error);
     }
-  });
-
+  },
+);
 
 module.exports = groupRouter;
-
-
-// TODO: userId로 소모임 조회 기능 추가
