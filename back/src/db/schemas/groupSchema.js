@@ -26,12 +26,7 @@ const GroupSchema = new mongoose.Schema(
       required: true,
     },
     // leaderId type : mongoose.Schema.Types.ObjectId 수정 필요 -> 수정중
-    leaderId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'users',
-      required: true,
-    },
-    memberId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users',
       required: false,

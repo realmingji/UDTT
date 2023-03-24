@@ -15,7 +15,7 @@ class GroupModel {
   }
 
   async findById(groupId) {
-    const group = await Group.findOne(groupId );
+    const group = await Group.findOne({_id: groupId });
     return group;
   }
 

@@ -28,7 +28,7 @@ class UserModel {
     const filter = { userId };
     const option = { returnOriginal: false };
 
-    const updatedUser = await User.findOneAndUpdate(filter, update, option);
+    const updatedUser = await User.findOneUpdate(filter, update, option);
     return updatedUser;
   }
 

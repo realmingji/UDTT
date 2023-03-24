@@ -8,11 +8,11 @@ const { userService } = require('../services/userService');
 //회원가입
 userRouter.post('/register', async (req, res, next) => {
   try {
-    const { userId, nickname, password } = req.body;
+    const { email, nickname, password } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userService.addUser({
-      userId,
+      email,
       nickname,
       password,
     });
@@ -26,10 +26,10 @@ userRouter.post('/register', async (req, res, next) => {
 userRouter.post('/login', async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
-    const { userId, password } = req.body;
+    const { email, password } = req.body;
     // 위 데이터가 db에 있는지 확인하고,
     // db 있을 시 로그인 성공 및, 토큰 여부 받아오기
-    const loginResult = await userService.getUserToken({ userId, password });
+    const loginResult = await userService.getUserToken({ email, password });
 
     res.status(200).json(loginResult);
   } catch (error) {
@@ -43,8 +43,8 @@ userRouter.get(
   loginRequired,
   async function (req, res, next) {
     try {
-      const _userId = req.currentUserId;
-      const currentUserInfo = await userService.getUserData(_userId);
+      const userId = req.currentUserId;
+      const currentUserInfo = await userService.getUserData(userId);
 
       res.status(200).json(currentUserInfo);
     } catch (error) {
@@ -53,46 +53,43 @@ userRouter.get(
   },
 );
 
-// 사용자 정보 수정
-userRouter.patch(
-  '/users/:userId',
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      // params로부터 _id를 가져옴(mongoDB에서 자동 생성해주는 _id)
-      const { _userId } = req.params;
+// // 사용자 정보 수정
+// userRouter.patch(
+//   '/users/:userId',
+//   loginRequired,
+//   async function (req, res, next) {
+//     try {
+//       // params로부터 _id를 가져옴(mongoDB에서 자동 생성해주는 _id)
+//       const { userId } = req.params;
 
-      // body data 로부터 업데이트할 사용자 정보를 추출함.
-      const { nickname, password } = req.body;
+//       // body data 로부터 업데이트할 사용자 정보를 추출함.
+//       const { nickname } = req.body;
 
-      // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
-      const currentPassword = req.body.currentPassword;
+//       // currentPassword 없을 시, 진행 불가
+//       if (password) {
+//         throw new Error('정보 변경시 본인 확인이 필요 합니다.');
+//       }
 
-      // currentPassword 없을 시, 진행 불가
-      if (!currentPassword) {
-        throw new Error('정보 변경시 본인 확인이 필요 합니다.');
-      }
+//       const userInfoRequired = { userId, password };
 
-      const userInfoRequired = { _userId, currentPassword };
+//       // 위 데이터가 undefined가 아니라면, 업데이트용 객체에 삽입
+//       const toUpdate = {
+//         ...(nickname && { nickname }),
+//         ...(password && { password }),
+//       };
 
-      // 위 데이터가 undefined가 아니라면, 업데이트용 객체에 삽입
-      const toUpdate = {
-        ...(nickname && { nickname }),
-        ...(password && { password }),
-      };
+//       // 사용자 정보를 업데이트함.
+//       const updatedUserInfo = await userService.setUser(
+//         userInfoRequired,
+//         toUpdate,
+//       );
 
-      // 사용자 정보를 업데이트함.
-      const updatedUserInfo = await userService.setUser(
-        userInfoRequired,
-        toUpdate,
-      );
-
-      res.status(200).json(updatedUserInfo);
-    } catch (error) {
-      next(error);
-    }
-  },
-);
+//       res.status(200).json(updatedUserInfo);
+//     } catch (error) {
+//       next(error);
+//     }
+//   },
+// );
 
 //사용자 삭제
 userRouter.delete(
@@ -101,9 +98,9 @@ userRouter.delete(
   async function (req, res, next) {
     try {
       // params로부터 id를 가져옴
-      const { _userId } = req.params.userId;
+      const { userId } = req.params.userId;
 
-      const deleteResult = await userService.deleteUser(_userId);
+      const deleteResult = await userService.deleteUser(userId);
 
       res.status(200).json(deleteResult);
     } catch (error) {

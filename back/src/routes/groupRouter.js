@@ -8,8 +8,7 @@ groupRouter.post('/groups/new', loginRequired, async (req, res, next) => {
   try {
 
     const { title, info, startTime, endTime, status, spot } = req.body;
-    const leaderId = req.currentUserId;
-    console.log(`-----currendId: ${leaderId}-----`);
+    // console.log(`-----currendId: ${leaderId}-----`);
 
     // 위 데이터를 소모임 db에 추가하기
     const newGroup = await groupService.addGroup({
@@ -18,7 +17,6 @@ groupRouter.post('/groups/new', loginRequired, async (req, res, next) => {
       startTime,
       endTime,
       status,
-      leaderId,
       spot,
     });
 
@@ -75,8 +73,6 @@ groupRouter.patch('/groups/:groupId', loginRequired, async (req, res, next) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
     const status = req.body.status;
-    const leaderId = req.currentUserId;
-    const memberId = req.currentUserId;
     const spot = req.body.spot;
 
     // 위 데이터가 undefined가 아니라면, 업데이트용 객체에 삽입
