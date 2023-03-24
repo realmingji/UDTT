@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react';
 import * as S from './StyledCommunity';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 const CommunityDetail = () => {
-  const [data, setData] = useState([]);
-  const { id } = useParams();
+  const [data, setData] = useState({});
+  const { groupId } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5050/api/groups/${id}`).then(res => {
+    axios.get(`http://localhost:5050/api/groups/${groupId}`).then(res => {
       setData(res.data);
     });
-  }, []);
-
+  }, [groupId]);
   return (
     <S.DetailBoard>
       <h1>
         <span>모집 중</span> {data.title}
       </h1>
-      <h1>{data.startTime}</h1>
-      <h1>{data.spot}</h1>
-      <h1>{data.info}</h1>
+      <h2>{moment(data.startTime).format('YYYY-MM-DD h시 mm분')}</h2>
+      <h2>{data.spot}</h2>
+      <h2>{data.info}</h2>
       <S.Line />
       <S.CommentInput placeholder="댓글을 입력하세요" />
       <Link to="/users/groups">
