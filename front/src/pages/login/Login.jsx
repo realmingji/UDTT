@@ -4,10 +4,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -21,9 +21,10 @@ const Login = () => {
         });
         //localStorage에 token값 저장
         localStorage.setItem('token', response.data.token);
-        window.location.reload();
+
         alert('로그인이 완료되었습니다!');
-        navigate('users/groups');
+        navigate('/users/groups');
+        window.location.reload();
       } catch (error) {
         setErrMsg(() => '아이디와 비밀번호를 다시 확인해주세요.');
       }
@@ -40,6 +41,7 @@ const Login = () => {
               value={email}
               type="email"
               placeholder="email"
+              autoComplete="off"
               onChange={e => setEmail(e.target.value)}
             />
           </S.FormFieldset>
@@ -49,6 +51,7 @@ const Login = () => {
               value={password}
               type="password"
               placeholder="password"
+              autoComplete="off"
               onChange={e => setPassword(e.target.value)}
             />
           </S.FormFieldset>

@@ -12,13 +12,13 @@ const NavBar = () => {
           <Link to={ROUTE.MAIN.link}>우당탕탕</Link>
         </S.MainTitle>
         <S.NavBar>
-          {localStorage.token == true ? (
+          {localStorage.token ? (
             <>
               <span>
-                <Link to={ROUTE.MYPAGE.link}>마이페이지</Link>
+                <Link to={ROUTE.LOGOUT.link}>로그아웃</Link>
               </span>
               <span>
-                <Link to={ROUTE.LOGOUT.link}>로그아웃</Link>
+                <Link to={ROUTE.MYPAGE.link}>마이페이지</Link>
               </span>
             </>
           ) : (
