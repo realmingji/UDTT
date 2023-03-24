@@ -3,12 +3,13 @@ import * as S from './StyledCommunity';
 import { Link } from 'react-router-dom';
 import Map from './Map';
 import axios from 'axios';
+import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCirclePlus,
   faPaperPlaneTop,
 } from '@fortawesome/free-solid-svg-icons';
-// http://localhost:5050/groups
+
 const CommunityMain = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -27,7 +28,7 @@ const CommunityMain = () => {
               <span>모집 중</span> {data.title}
             </h1>
             <S.Bottom>
-              <h2>{data.startTime}</h2>
+              <h2>{moment(data.startTime).format('YYYY-MM-DD h시 mm분')}</h2>
               <S.Comment>
                 <S.CommentIcon />
                 <h2>2</h2>

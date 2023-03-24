@@ -133,6 +133,8 @@ export const DetailBoard = styled.div`
   }
   h2 {
     margin-top: 3px;
+    font-size: 20px;
+    margin-bottom: 20px;
   }
   span {
     color: #1ca82a;
@@ -191,5 +193,5 @@ export const ParticipationBtn = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 450px;
 `;
