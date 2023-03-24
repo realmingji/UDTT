@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Myinfo from './myinfo/myinfo';
+import jwt_decode from 'jwt-decode';
 import Clublist from './clublist/Clublist';
 import * as S from './StyledMypage';
 
@@ -14,38 +15,14 @@ export default function MyPage() {
   const [joinList, setJoinList] = useState([]);
   const [myClubList, setMyClubList] = useState([]);
   const [myCommentList, setMyCommentList] = useState([]);
-  const userId = JSON.parse(localStorage.getItem('token'));
+  // const userId = JSON.parse(localStorage.getItem('token'));
+  const token = localStorage.getItem('token');
+  const decoded = jwt_decode(token);
+  const userId = decoded.userId;
 
-  // [ 사용자정보가져오기 ]
-  // useEffect(() => {
-  //   axios.get(`http://localhost:5050/users/${userId}`).then(res => {
-  //     setCustomerInfo(res.data);
-  //     setJoinList(res.data.join_list);
-  //     setMyClubList(res.data.my_group_list);
-  //     setMyCommentList(res.data.comment_list);
-  //   });
-  // }, []);
-
-  // [ 닉네임변경 ]
-  // const submitChangedNickname = event => {
-  //   axios
-  //     .patch(`http://localhost:5050/users/${userId}`, userNickname)
-  //     .then(() => {
-  //       alert('닉네임이 변경되었습니다.');
-  //       setNickname('');
-  //     });
-  // };
-
-  // [ 회원탈퇴 ]
-  // const signout = () => {
-  //   axios
-  //     .delete(`http://localhost:5001/users/${userId}`)
-  //     .then(() => navigate({ROUTE.MAIN.link}));
-  // };
-
-  /////////////////////////// test용  ////////////////////////////
+  // [사용자정보가져오기];
   useEffect(() => {
-    axios.get('/data/customerInfo.json').then(res => {
+    axios.get(`http://localhost:5050/users/${userId}`).then(res => {
       setCustomerInfo(res.data);
       setJoinList(res.data.join_list);
       setMyClubList(res.data.my_group_list);
@@ -53,17 +30,45 @@ export default function MyPage() {
     });
   }, []);
 
+  // [닉네임변경];
   const submitChangedNickname = event => {
-    event.preventDefault();
     let userNickname = { nickname: nickname };
-    console.log(userNickname);
-    alert('닉네임이 변경되었습니다.');
-    setNickname('');
+    axios
+      .patch(`http://localhost:5050/users/${userId}`, userNickname)
+      .then(() => {
+        alert('닉네임이 변경되었습니다.');
+        setNickname('');
+      });
   };
 
+  // [회원탈퇴];
   const signout = () => {
-    navigate('/');
+    axios
+      .delete(`http://localhost:5001/users/${userId}`)
+      .then(() => navigate('/'));
   };
+
+  /////////////////////////// test용  ////////////////////////////
+  // useEffect(() => {
+  //   axios.get('/data/customerInfo.json').then(res => {
+  //     setCustomerInfo(res.data);
+  //     setJoinList(res.data.join_list);
+  //     setMyClubList(res.data.my_group_list);
+  //     setMyCommentList(res.data.comment_list);
+  //   });
+  // }, []);
+
+  // const submitChangedNickname = event => {
+  //   event.preventDefault();
+  //   let userNickname = { nickname: nickname };
+  //   console.log(userNickname);
+  //   alert('닉네임이 변경되었습니다.');
+  //   setNickname('');
+  // };
+
+  // const signout = () => {
+  //   navigate('/');
+  // };
   /////////////////////////// test용  ////////////////////////////
 
   return (
