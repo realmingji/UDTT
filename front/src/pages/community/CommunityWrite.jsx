@@ -3,53 +3,65 @@ import * as S from './StyledCommunity';
 import { Link } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSquarePlus,
-  faSquareMinus,
-} from '@fortawesome/free-regular-svg-icons';
+import axios from 'axios';
 
 const CommunityWrite = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [count, setCount] = useState(1);
-  let decrementCounter = () => setCount(count - 1);
-  const incrementCounter = () => setCount(count + 1);
+  const [title, setTitle] = useState('');
+  const [startDate, setstartDate] = useState(new Date());
+  const [startTime, setStartTime] = useState(new Date());
+  const [spot, setSpot] = useState('');
+  const [info, setInfo] = useState('');
 
-  if (count <= 1) {
-    decrementCounter = () => setCount(1);
-  }
+  const handleSubmit = async () => {
+    try {
+      await axios.post('http://localhost:5050/api/groups/new', {
+        title,
+        startDate,
+        startTime,
+        spot,
+        info,
+      });
+      console.log('Data is successfully submitted');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <S.WriteBoard>
-      <S.Input placeholder="제목" />
-      <S.SelectDate
-        locale={ko}
-        dateFormat="MM월dd일"
-        selected={startDate}
-        onChange={date => setStartDate(date)}
+      <S.Input
+        placeholder="제목"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
       />
       <S.SelectDate
         locale={ko}
-        selected={startDate}
-        onChange={date => setStartDate(date)}
+        dateFormat="MM월dd일"
+        selected={startTime}
+        onChange={date => setstartDate(date)}
+      />
+      <S.SelectDate
+        locale={ko}
+        selected={startTime}
+        onChange={date => setStartTime(date)}
         showTimeSelect
         showTimeSelectOnly
         timeIntervals={15}
         timeCaption="Time"
         dateFormat="h:mm aa"
       />
-      <S.BtnContainer>
-        <button onClick={() => decrementCounter()}>
-          <FontAwesomeIcon icon={faSquareMinus} />
-        </button>
-        {count}
-        <button onClick={() => incrementCounter()}>
-          <FontAwesomeIcon icon={faSquarePlus} />
-        </button>
-      </S.BtnContainer>
-      <S.Input placeholder="장소" />
-      <S.WriteTextarea placeholder="내용" />
+      <S.Input
+        placeholder="장소"
+        value={spot}
+        onChange={e => setSpot(e.target.value)}
+      />
+      <S.WriteTextarea
+        placeholder="내용"
+        value={info}
+        onChange={e => setInfo(e.target.value)}
+      />
       <Link to="/users/groups">
-        <S.WriteBtn>올리기</S.WriteBtn>
+        <S.WriteBtn onClick={handleSubmit}>올리기</S.WriteBtn>
       </Link>
     </S.WriteBoard>
   );
