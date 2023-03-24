@@ -7,9 +7,9 @@ const Main = () => {
   const [url, setUrl] = useState(true);
   console.log(url);
   const firstURL =
-    'https://public.tableau.com/views/UDTT-DataAnalysis_2/2_1?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link?:showVizHome=no&:embed=true';
+    'https://public.tableau.com/views/UDTT-Data_map_11/1_1?:language=ko-KR&publish=yes&:display_count=n&:origin=viz_share_link?:showVizHome=no&:embed=true';
   const secondURL =
-    'https://public.tableau.com/views/UDTT-DataAnalysis_3/3_1?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link?:showVizHome=no&:embed=true';
+    'https://public.tableau.com/views/UDTT-DataAnalysis_17map/1_1?:language=ko-KR&:display_count=n&:origin=viz_share_link?:showVizHome=no&:embed=true';
   const changeState = () => {
     setUrl(cur => !cur);
   };
@@ -27,7 +27,7 @@ const Main = () => {
       <iframe
         onClick={changeState}
         src={url ? firstURL : secondURL}
-        width="70%"
+        width="75%"
         height="1000"
         title="자전거 시각화 데이터"
       />

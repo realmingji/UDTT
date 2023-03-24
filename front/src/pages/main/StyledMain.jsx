@@ -33,14 +33,14 @@ export const MainContainer = styled.div`
   }
   .right {
     position: absolute;
-    right: 160px;
+    right: 130px;
     font-size: 50px;
     cursor: pointer;
     color: #4fc95b;
   }
   .left {
     position: absolute;
-    left: 160px;
+    left: 130px;
     font-size: 50px;
     cursor: pointer;
     color: #4fc95b;
