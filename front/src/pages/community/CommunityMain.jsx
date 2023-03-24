@@ -20,23 +20,8 @@ const CommunityMain = () => {
   return (
     <div style={{ paddingBottom: '80px', overflowX: 'hidden' }}>
       <Map />
-      <Link to={'/users/groups/:groupId'}>
-        <S.BoardBox>
-          <h1>
-            <span>모집 중</span> 한강에서 자전거 타실 분
-          </h1>
-          <S.Bottom>
-            <h2>3월 28일 12시</h2>
-            <S.Comment>
-              <S.CommentIcon />
-              <h2>2</h2>
-            </S.Comment>
-          </S.Bottom>
-        </S.BoardBox>
-      </Link>
-
       {data.map((data, index) => (
-        <Link to={`/users/groups/${index}`}>
+        <Link to={`/users/groups/${data._id}`}>
           <S.BoardBox>
             <h1>
               <span>모집 중</span> {data.title}

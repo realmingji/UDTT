@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './StyledCommunity';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const CommunityDetail = () => {
+  const [data, setData] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios.get(`http://localhost:5050/api/groups/${id}`).then(res => {
+      setData(res.data);
+    });
+  }, []);
+
   return (
     <S.DetailBoard>
       <h1>
-        <span>모집 중</span> 한강에서 자전거 타실 분
+        <span>모집 중</span> {data.title}
       </h1>
-      <h1>3월 28일 10시</h1>
-      <h1>10시에 한강 공원에서 자전거 타실분 있을까요?</h1>
-      <h2>참여 중인 라이더 2/3</h2>
-      <S.Profile>
-        <S.ProfilePicture />
-        <h3>김뫄뫄</h3>
-        <h3>모임장</h3>
-      </S.Profile>
-      <S.Profile>
-        <S.ProfilePicture />
-        <h3>김뫄뫄</h3>
-      </S.Profile>
+      <h1>{data.startTime}</h1>
+      <h1>{data.spot}</h1>
+      <h1>{data.info}</h1>
       <S.Line />
       <S.CommentInput placeholder="댓글을 입력하세요" />
       <Link to="/users/groups">
