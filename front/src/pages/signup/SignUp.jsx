@@ -29,8 +29,6 @@ const SignUp = () => {
       setErrMsg(() => '비밀번호가 일치하지 않습니다.');
       return;
     }
-    //확인용 (나중에 지우기)
-    console.log(userData);
     try {
       await axios.post(`http://localhost:5050/api/register`, { ...userData });
       alert('회원가입에 성공했습니다.');
