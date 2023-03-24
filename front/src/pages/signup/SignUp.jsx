@@ -14,7 +14,7 @@ const SignUp = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const userData = {
-      nickName: nickname,
+      nickname: nickname,
       userId: email,
       password: password,
     };
