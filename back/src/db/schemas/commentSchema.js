@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const CommentSchema = new mongoose.Schema(
   {
-    // 작성자
-    authourId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users',
       required: true,

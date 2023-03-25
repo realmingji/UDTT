@@ -1,11 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 function loginRequired(req, res, next) {
-    // request 헤더로부터 authorization bearer 토큰
     const userToken = req.headers['authorization']?.split(' ')[1];
 
-    // jwt token 문자열, "null", undefined
-    // "null" 일 경우, loginRequired 가 서비스 사용을 제한
     if (!userToken || userToken === 'null') {
         res.status(401).json({
         result: 'Unauthorized-approach',
@@ -14,11 +11,9 @@ function loginRequired(req, res, next) {
     return;
     }
 
-    // 해당 token 이 정상적인 token인지 확인
     try {
         const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
         const jwtDecoded = jwt.verify(userToken, secretKey);
-
         const userId = jwtDecoded.userId;
         req.currentUserId = userId;
 

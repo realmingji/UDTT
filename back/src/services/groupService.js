@@ -1,76 +1,57 @@
-const { groupModel } = require('../db/models/groupModel2');
+const { commentModel } = require('../db/models/commentModel');
+const { groupModel } = require('../db/models/groupModel');
 
-class GroupService {
-  constructor(groupModel) {
-    this.groupModel = groupModel;
-  }
-  // 소모임 생성
-  async addGroup(groupData) {
-    // db에 저장
-    const createGroup = await this.groupModel.create(groupData);
-
-    return createGroup;
-  }
-
-  async getGroups() {
-    const groups = await this.groupModel.findAll();
-
-    return groups;
-  }
-
-  // ----- spot 제외 -----
-  // async getGroupsBySpot(spotId) {
-  //   const groups = await this.groupModel.findBySpot(spotId);
-
-  //   return groups;
-  // }
-
-  async getGroupInfo(groupId) {
-    const group = await this.groupModel.findById(groupId);
-
-    // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!group) {
-      throw new Error('등록된 소모임이 없습니다.');
+class CommentService {
+    constructor(commentModel, groupModel) {
+        this.commentModel = commentModel;
+        this.groupModel = groupModel;
     }
 
-    return group;
-  }
+    async addComment(commentInfo) {
+        const createdNewComment = await this.commentModel.create(commentInfo);
 
-  async getGroupsByUser(userId) {
-    const groups = await this.groupModel.findByUser(userId);
-
-    // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!groups) {
-      throw new Error('등록된 소모임이 없습니다.');
+        return createdNewComment;
     }
 
-    return groups;
-  }
+    async getComments() {
+        const comments = await this.commentModel.findAll();
 
-  async setGroup(groupId, toUpdate) {
-    const updatedGroup = await this.groupModel.update({
-      groupId,
-      update: toUpdate,
-    });
+        return comments;
+    }
 
-    return updatedGroup;
-  }
+    async getcommentsByGroupId(groupId) {
+        const group = await this.groupModel.findById(groupId);
+        const comments = await this.commentModel.findAllByGroupId(group._Id);
 
-  async deleteGroup(groupId) {
-    const deleteGroup = await this.groupModel.deleteById(groupId);
-    return deleteGroup;
-  }
+        return comments;
+    }
+
+    async getCommentsByUserId(userId) {
+        const comments = await this.commentModel.findAllByUserId(userId);
+
+        return comments;
+    }
+
+    async setComment(commentId, toUpdate) {
+        const updatedComment = await this.commentModel.update({
+            commentId,
+            update: toUpdate,
+        });
+
+        return updatedComment;
+    }
+
+    async deleteCommentData(commentId) {
+        const { deletedCount } = await this.commentModel.deleteById(commentId);
+
+        if (deletedCount === 0) {
+            throw new Error(`${commentId} 삭제 되지 않았습니다. 다시 시도해 주세요.`);
+        }
+
+        return { result: 'success' };
+    }
 }
 
-const groupService = new GroupService(groupModel);
+const commentService = new CommentService(commentModel, groupModel);
 
-module.exports = { groupService };
-
-// 빈 칸이 발생한 경우 (Null)
-// TODO: 제목, 정보, 모임시작시간, 모임종료시간 member정보, spot
-// endTime Null
-// status default 'OPEN'
-// "라이더 모임의 Title을 입력 해 주세요."
-// "라이더 모임을 간단하게 소개 해 주세요."
-// "라이더 모임이 시작되는 시간을 알려주세요."
-// "라이더 모임의 장소를 알려주세요."
+module.exports = { commentService };

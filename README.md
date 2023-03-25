@@ -301,6 +301,107 @@
 <br>
 <br>  
 
+📦front
+ ┣ 📂public
+ ┃ ┣ 📂data
+ ┃ ┃ ┣ 📜customerInfo.json
+ ┃ ┃ ┗ 📜joinList.json
+ ┃ ┗ 📜index.html
+ ┣ 📂src
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂footer
+ ┃ ┃ ┃ ┣ 📜Footer.jsx
+ ┃ ┃ ┃ ┗ 📜StyledFooter.jsx
+ ┃ ┃ ┗ 📂navbar
+ ┃ ┃ ┃ ┣ 📜NavBar.jsx
+ ┃ ┃ ┃ ┗ 📜StyledNav.jsx
+ ┃ ┣ 📂pages
+ ┃ ┃ ┣ 📂community
+ ┃ ┃ ┃ ┣ 📂data
+ ┃ ┃ ┃ ┃ ┗ 📜MapData.jsx
+ ┃ ┃ ┃ ┣ 📜CommunityDetail.jsx
+ ┃ ┃ ┃ ┣ 📜CommunityMain.jsx
+ ┃ ┃ ┃ ┣ 📜CommunityWrite.jsx
+ ┃ ┃ ┃ ┣ 📜Map.jsx
+ ┃ ┃ ┃ ┗ 📜StyledCommunity.jsx
+ ┃ ┃ ┣ 📂login
+ ┃ ┃ ┃ ┣ 📜Login.jsx
+ ┃ ┃ ┃ ┣ 📜Logout.jsx
+ ┃ ┃ ┃ ┗ 📜StyledLogin.jsx
+ ┃ ┃ ┣ 📂main
+ ┃ ┃ ┃ ┣ 📜Main.jsx
+ ┃ ┃ ┃ ┗ 📜StyledMain.jsx
+ ┃ ┃ ┣ 📂mypage
+ ┃ ┃ ┃ ┣ 📂clublist
+ ┃ ┃ ┃ ┃ ┣ 📜Clublist.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜StyledClublist.jsx
+ ┃ ┃ ┃ ┣ 📂myinfo
+ ┃ ┃ ┃ ┃ ┣ 📜myinfo.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜styledMyinfo.jsx
+ ┃ ┃ ┃ ┣ 📜Mypage.jsx
+ ┃ ┃ ┃ ┗ 📜StyledMypage.jsx
+ ┃ ┃ ┗ 📂signup
+ ┃ ┃ ┃ ┣ 📜SignUp.jsx
+ ┃ ┃ ┃ ┗ 📜StyledSignUp.jsx
+ ┃ ┣ 📂styles
+ ┃ ┃ ┣ 📂fonts
+ ┃ ┃ ┃ ┣ 📜Binggrae.otf
+ ┃ ┃ ┃ ┗ 📜Yeongdo.woff
+ ┃ ┃ ┗ 📜GlobalStyle.js
+ ┃ ┣ 📜App.js
+ ┃ ┣ 📜index.js
+ ┃ ┗ 📜routes.js
+ ┣ 📜.env
+ ┣ 📜.gitignore
+ ┣ 📜.prettierrc
+ ┣ 📜README.md
+ ┣ 📜UDTT_Back-End_ERD.png
+ ┣ 📜package-lock.json
+ ┗ 📜package.json
+
+<br>
+<br>
+
+📦back
+ ┣ 📂file
+ ┃ ┣ 📜Back_GenerateTreeText
+ ┃ ┣ 📜UDTT_Back-End_ERD.png
+ ┃ ┣ 📜commentService.ts
+ ┃ ┣ 📜mysql.udtt.pdf
+ ┃ ┣ 📜swagger.js.pdf
+ ┃ ┣ 📜udttSchema.sql
+ ┃ ┗ 📜udttSchemaPrisma_.pdf
+ ┣ 📂src
+ ┃ ┣ 📂controller
+ ┃ ┃ ┗ 📜index.js
+ ┃ ┣ 📂db
+ ┃ ┃ ┣ 📂models
+ ┃ ┃ ┃ ┣ 📜commentModel.js
+ ┃ ┃ ┃ ┣ 📜groupModel.js
+ ┃ ┃ ┃ ┗ 📜userModel.js
+ ┃ ┃ ┣ 📂schemas
+ ┃ ┃ ┃ ┣ 📜commentSchema.js
+ ┃ ┃ ┃ ┣ 📜groupSchema.js
+ ┃ ┃ ┃ ┗ 📜userSchema.js
+ ┃ ┃ ┗ 📜db.js
+ ┃ ┣ 📂middleware
+ ┃ ┃ ┣ 📜errorHandler.js
+ ┃ ┃ ┗ 📜loginRequired.js
+ ┃ ┣ 📂routes
+ ┃ ┃ ┣ 📜commentRouter.js
+ ┃ ┃ ┣ 📜groupRouter.js
+ ┃ ┃ ┗ 📜userRouter.js
+ ┃ ┣ 📂services
+ ┃ ┃ ┣ 📜commentService.js
+ ┃ ┃ ┣ 📜groupService.js
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┗ 📜userService.js
+ ┃ ┗ 📜app.js
+ ┣ 📜.env
+ ┣ 📜.gitignore
+ ┣ 📜.prettierrc
+ ┣ 📜package-lock.json
+ ┗ 📜package.json
 
 ## 6. 버전
 

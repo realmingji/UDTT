@@ -4,6 +4,11 @@ const { CommentSchema } = require('../schemas/commentSchema');
 const Comment = model("comments", CommentSchema);
 
 class CommentModel {
+    async create(commentInfo) {
+        const createdNewComment = await Comment.create(commentInfo);
+        return createdNewComment;
+    }
+
     async findById(commentId) {
         const comment = await Comment.findOne({ id: commentId });
         return comment;
@@ -15,18 +20,13 @@ class CommentModel {
     }
 
     async findAllByUserId(userId) {
-        const comments = await Comment.find(userId);
+        const comments = await Comment.find({_id: userId});
         return comments;
     }
 
     async findAllByGroupId(groupId) {
-        const comments = await Comment.find(groupId );
+        const comments = await Comment.find({_id: groupId });
         return comments;
-    }
-
-    async create(commentInfo) {
-        const createdNewComment = await Comment.create(commentInfo);
-        return createdNewComment;
     }
 
     async update({ commentId, update }) {
