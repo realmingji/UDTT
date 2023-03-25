@@ -39,14 +39,6 @@ export const Bottom = styled.div`
   justify-content: space-between;
 `;
 
-export const Comment = styled.div`
-  display: flex;
-  float: right;
-`;
-
-export const CommentIcon = styled(ChatBubbleOutlineIcon)`
-  margin-right: 2px;
-`;
 /*CommunityWrite */
 export const WriteBoard = styled.div`
   width: 70%;
@@ -95,6 +87,7 @@ export const WriteBtn = styled.div`
   width: 70%;
   height: 45px;
   font-size: 20px;
+  margin-top: 450px;
   background-color: #1ca82a;
   color: white;
   display: flex;
@@ -141,13 +134,6 @@ export const DetailBoard = styled.div`
   }
 `;
 
-export const Line = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: lightgray;
-  margin: 15px 0 15px 0;
-`;
-
 export const Profile = styled.div`
   display: flex;
   margin-top: 20px;
@@ -163,24 +149,6 @@ export const ProfilePicture = styled.div`
   height: 60px;
   border-radius: 50%;
   background-color: lightgray;
-`;
-
-export const CommentInput = styled.input`
-  font-size: 15px;
-  width: 80%;
-  display: block;
-  margin: 0 auto;
-  border-left-width: 0;
-  border-right-width: 0;
-  border-top-width: 0;
-  border-bottom-width: 1px;
-  outline: none;
-  text-decoration: underline;
-  text-underline-position: under;
-
-  ::placeholder {
-    color: #929292;
-  }
 `;
 
 export const ParticipationBtn = styled.div`

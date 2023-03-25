@@ -21,8 +21,6 @@ const CommunityDetail = () => {
       <h2>{moment(data.startTime).format('YYYY-MM-DD h시 mm분')}</h2>
       <h2>{data.spot}</h2>
       <h2>{data.info}</h2>
-      <S.Line />
-      <S.CommentInput placeholder="댓글을 입력하세요" />
       <Link to="/users/groups">
         <S.ParticipationBtn>참여하기</S.ParticipationBtn>
       </Link>

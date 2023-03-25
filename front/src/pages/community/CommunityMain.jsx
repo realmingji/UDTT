@@ -30,10 +30,6 @@ const CommunityMain = () => {
             </h1>
             <S.Bottom>
               <h2>{moment(data.startTime).format('YYYY-MM-DD h시 mm분')}</h2>
-              <S.Comment>
-                <S.CommentIcon />
-                <h2>2</h2>
-              </S.Comment>
             </S.Bottom>
           </S.BoardBox>
         </Link>
